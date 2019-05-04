@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery 在线手册</title>
+		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+		<style>
+		*{padding: 0;margin: 0;}
+		#alert{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background: rgba(0,0,0,0.5);display: none;}
+		#mask{width: 600px;height: 400px;background: #fff;position: absolute;top: 0;right: 0;bottom: 0;left: 0;margin: auto;}
+		</style>
+	</head>
+	<body>
+		<div class="son">
+			<span>子元素</span>
+			<p>
+				<span>2</span>
+			</p>
+			<p>
+				<span>3</span>
+			</p>
+			<span>子元素</span>
+		</div>
+		<input type="checkbox" class="checkbox"/>
+		
+		<div class="content"></div>
+		
+		<div class="p">接受两个参数，n为元素在集合中的索引位置，val为原先的HTML值。</div>
+		<div class="p"></div>
+		<div class="p"></div>
+		<div class="p"></div>
+		
+		<ul class="forEach"></ul>
+		
+		<button class="btn">点击</button>
+		<p class="toggle">sjfdsaljflsjlfjsalfjslajflsajflskjfljslfj</p>
+		
+		<div class="oneClick">1</div>
+		
+		<button class="show">Hello</button>
+		<p class="effect" style="display: none;">这个是动画效果</p>
+		
+		<button id="alertBtn"> 点击弹窗 </button>
+		<div id="alert">
+			<div id="mask">
+				<div id="">
+					弹窗
+				</div>
+			</div>
+		</div>
+		
+		<input list="cars" />
+		<datalist id="cars">
+			<option value="注意">
+			<option value="cars">
+			<option value="对应">
+			<option value="HTML5">
+		    <option value="属性">
+		</datalist>
+	</body>
+	<script>
+		//子元素选择器 > 以及逗号隔开写法
+		$('.son > span,p > span').css({'color':'red','fontSize':'20px'})
+		
+		$(".checkbox").prop("checked",true)
+		
+		html = "<span style='color:blue'>这是span标签</span><span>这是span标签</span>"
+		$('.content').html(html)	
+		
+		$(".p").html(function(n,val){
+			return "这个 p 元素的 index 是：" + n + val;
+			})
+			
+	//遍历循环
+		var val = [
+			{
+				id:0,
+				text:'标题一'
+			},
+			{
+				id:1,
+				text:'标题二'
+			},
+			{
+				id:2,
+				text:'标题三'
+			}
+		]
+		$('.forEach').html(getHtml(val))
+			function getHtml(val){
+				var html = ''
+				for(var i = 0;i < val.length;i++){
+					html += '<li style="color:red;">这是第' + val[i].id + val[i].text + '个循环出来的标签' + '</li>'
+				}
+				return html 
+			}
+			
+		$('.btn').click(function(){
+			$('.toggle').toggle(600)
+		})
+		
+		//点击事件只执行一次 可用于点赞功能
+		$('.oneClick').one('click',function(){
+			$(this).text(Number($(this).text()) + 1)
+		})
+		
+		$(".show").click(function(){
+			// $('.effect').show()
+			// $('.effect').hide()
+			// $('.effect').slideUp()
+			// $('.effect').slideDown()
+			// $('.effect').slideToggle()
+			// $('.effect').fadeIn('slow')
+			$('.effect').fadeToggle()
+		})
+		
+		$('#alertBtn').click(function(){
+			$('#alert').fadeIn('2000')
+		})
+
+	</script>
+</html>

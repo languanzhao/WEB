@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+</head>
+<body onload="setInterval(()=>document.body.innerHTML=new Date().toLocaleString().slice(10,19))">
+	<div class="date"></div>
+      <script type="text/javascript">
+      	var week = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"]
+      	var mydate = new Date()
+      	var year = mydate.getFullYear()    //年份
+      	var month = mydate.getMonth()+1    //月份
+      	var date = mydate.getDate()        //日
+      	var day = mydate.getDay()          //星期
+      	var hour = mydate.getHours()       //时
+      	var minutes = mydate.getMinutes()  //分
+      	var second = mydate.getSeconds()   //秒
+      	console.log(year+"年"+month+"月"+date+"日"+week[day]+hour+"时"+minutes+"分"+second+"秒")
+				var time = year+"年"+month+"月"+date+"日"+week[day]+hour+"时"+minutes+"分"+second+"秒"
+				var date = document.querySelector('.date')
+				date.innerText = time
+      </script>
+</body>
+</html>

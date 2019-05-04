@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script type="text/javascript" src="js/jquery1.11.js"></script>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+
+	<a href="http://www.baidu.com" title="" class="baidu">百度</a>
+	<a href="http://www.sina.com" title="">新浪</a>
+	<a href="https://www.jd.cn" title="">京东</a>
+	<a href="http://www.taobao.com" title="">淘宝</a>
+
+	<input type="checkbox" name="">
+    <script type="text/javascript">
+    	//https 加密
+		
+    	$("ul li").each(function(i,item){
+    		console.log(i);
+    		console.log(item);
+    	})
+    	
+    	console.log("属性",$("baidu").attr("href"));
+    	
+    	console.log("文本",$("a[href='http://www.baidu.com']").html());
+    	
+		$("input").click(function(){
+			console.log($(this).prop("checked"))
+		})
+		
+		// $(".baidu").attr("href","http://www.taobao.com")
+		// $(".baidu").removeAttr("href")
+		
+		//替换属性
+		// $("a[href='http://www.baidu.com']").attr("class","bai")
+		// $(".baidu").attr("class","baidu du du1 du2")
+		
+		//添加class属性类名
+		$(".baidu").addClass('on')
+		$('.baidu').addClass('bai').removeClass('on')
+    </script>
+</body>
+</html>

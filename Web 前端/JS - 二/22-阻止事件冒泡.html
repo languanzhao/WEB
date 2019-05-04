@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>阻止冒泡事件</title>
+	</head>
+	<body>
+		<form id="form1" runat="server">
+　　　　<div id="divOne" onclick="alert('我是最外层');">
+　　　　　　<div id="divTwo" onclick="alert('我是中间层！')">
+　　　　　　　　<a id="hr_three" href="http://www.baidu.com" mce_href="http://www.baidu.com"onclick="alert('我是最里层！')">点击我</a>
+　　　　　　</div>
+　　　　</div>
+　　</form>
+	</body>
+ <script type="text/javascript">
+	//如何来阻止冒泡事件?
+	
+	1.event.stopPropagation();
+
+	$(function() {
+		$("#hr_three").click(function(event) {
+			event.stopPropagation();
+		});
+	});
+//再点击“点击我”，会弹出：我是最里层，然后链接到百度
+
+	2.return false;
+
+    //如果头部加入的是以下代码
+
+	$(function() {
+	　　$("#hr_three").click(function(event) {
+	　　　　return false;
+	　　});
+	});
+
+//再点击“点击我”，会弹出：我是最里层，但不会执行链接到百度页面
+
+ 
+
+//由此可以看出：
+
+1.event.stopPropagation(); 
+
+   //事件处理过程中，阻止了事件冒泡，但不会阻击默认行为（它就执行了超链接的跳转）
+
+ 
+
+2.return false;
+
+   //事件处理过程中，阻止了事件冒泡，也阻止了默认行为（比如刚才它就没有执行超链接的跳转）
+   <script>
+</html>

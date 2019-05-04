@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>生成二维码</title>
+		<script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+		<script src="js/jquery.qrcode.min.js">
+		</script>
+	</head>
+	<body>
+		<div id="qrcode"></div>
+		<div>
+			<h2>使用步骤</h2>
+			<p>1、首先在页面中加入jquery库文件和qrcode插件。</p>
+			<p>2、在页面中需要显示二维码的地方加入标签代码。</p>
+			<p>3、调用qrcode插件，书写代码并放入链接</p>
+			<h2>用途</h2>
+			<p>例如用户在pc端上浏览，可以通过扫码在移动端上观看：如 https://www.chengzijianzhan.com/tetris/page/1609670066844676/</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+//   	方式一
+//   	 $('#qrcode').qrcode('http://www.baidu.com')
+		
+//   	方式二
+		$('#qrcode').qrcode({
+			render:'table',              //也可以替换为table
+			width:100,
+			height:100,
+ 			foreground: "orange", 		 //前景色
+ 			background: "blue",   		 //背景色
+			text:'http://www.baidu.com'  //链接地址
+		})
+		
+		
+//			中文ULR生成方法:
+//			$("#qrcode").qrcode(encodeURI("http://www.百度.com"));//使用encodeURI进行转码
+	</script>
+</html>
