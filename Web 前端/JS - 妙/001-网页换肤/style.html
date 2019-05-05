@@ -4,7 +4,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
 <link id="link1" href="css2.css" rel="stylesheet" type="text/css" />
-
+<style type="text/css">
+	dd{display: flex;}
+	dd span{line-height: 36px;}
+</style>
 </head>
 
 <body>
@@ -16,10 +19,18 @@
 			<input id="btn1" type="button" value="皮肤1" onclick="document.getElementById('link1').href='css1.css';" />
 			<input id="btn2" type="button" value="皮肤2" onclick="document.getElementById('link1').href='css2.css';" />
 		</dt>
-		<dd>输入姓名：<input class="text" type="text" /></dd>
-		<dd>输入密码：<input class="text" type="password" /></dd>
-		<dd>请您留言：<textarea></textarea></dd>
-		<dd class="center"><input class="btn" type="submit" value="提交" /></dd>
+		<dd>
+			<span>输入姓名：</span>
+			<input class="text" type="text" /></dd>
+		<dd>
+			<span>输入密码：</span>
+			<input class="text" type="password" /></dd>
+		<dd>
+			<span>请您留言：</span>
+			<textarea></textarea></dd>
+		<div class="center">
+			<input class="btn" type="submit" value="提交" />
+		</div>
 	</form>
 </dl>
 </body>

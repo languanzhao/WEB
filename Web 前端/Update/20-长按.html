@@ -27,29 +27,29 @@
             var btn = document.querySelectorAll(".btn")
             var Toalert = document.querySelector(".Toalert")
             Toalert.style.display = "none"
-var start = 0
-for(var i=0;i<btn.length;i++){
-    btn[i].addEventListener("touchstart", function(event) {
-    event.preventDefault();
-    start = new Date();
-    var tId = setTimeout(function() {
-        var end = new Date()
-        var time = end - start
-        event.target.innerHTML = "你已经长按" + (time / 100) + "S"
-        (end - start < 2000) && setTimeout(arguments.callee, 10)
-    }, 10)
-}, false)
+			var start = 0
+			for(var i=0;i<btn.length;i++){
+				btn[i].addEventListener("touchstart", function(event) {
+				event.preventDefault();
+				start = new Date();
+				var tId = setTimeout(function() {
+					var end = new Date()
+					var time = end - start
+					event.target.innerHTML = "你已经长按" + (time / 100) + "S"
+					(end - start < 2000) && setTimeout(arguments.callee, 10)
+				}, 10)
+			}, false)
+	
+			btn[i].addEventListener("touchend", function(event) {
+				event.preventDefault();
+				if(new Date() - start > 800){
+					   Toalert.style.display = "block"
+				}
+				
+			}, false)  
 
-btn[i].addEventListener("touchend", function(event) {
-    event.preventDefault();
-    if(new Date() - start > 800){
-           Toalert.style.display = "block"
-    }
-    
-}, false)  
-
-}
-
+			}
+	
 
  
 </script>

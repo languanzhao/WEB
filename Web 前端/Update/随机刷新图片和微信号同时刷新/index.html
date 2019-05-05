@@ -12,17 +12,17 @@
               url:"https://easy-mock.com/mock/5c283440e644911aa4071e95/example/data",
               type:"POST",
               success:function(res){
-							console.log(res)
-              var arr_wx = res.data.wxNumber
-              
-              var img = res.data.wxImg
-            
-              var wx_index = Math.floor((Math.random() * arr_wx.length))
-              var stxlwx = arr_wx[wx_index]
-              //微信号
-              $('.wxNumber').text(stxlwx)
-              //二维码
-              $(".wxImg").attr("src","img/"+stxlwx+".jpg")
+				  console.log(res)
+				  var arr_wx = res.data.wxNumber
+				  
+				  var img = res.data.wxImg
+				
+				  var wx_index = Math.floor((Math.random() * arr_wx.length))
+				  var stxlwx = arr_wx[wx_index]
+				  //微信号
+				  $('.wxNumber').text(stxlwx)
+				  //二维码
+				  $(".wxImg").attr("src","img/"+stxlwx+".jpg")
   
               }
           })

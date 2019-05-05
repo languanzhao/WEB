@@ -1,6 +1,6 @@
 
 body { background: url(bg.gif); margin-top: 40px; }
-
+#btn2{color: red;}
 dl { width: 600px; border: 4px solid #fff; background: #669999; padding: 20px; margin: 0 auto; filter: alpha(opacity: 90); opacity: 0.9; }
 dt { font-size: 18px; color: #fff; border-bottom: 1px solid #ccc; padding-left: 10px; padding-bottom: 10px; margin-bottom: 20px; }
 dd { margin-left: 0; padding-bottom: 10px; font-size: 14px; padding-left: 10px; color: #fff; }

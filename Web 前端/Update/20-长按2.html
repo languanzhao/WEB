@@ -1,0 +1,64 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+      .Toalert{width: 100%;height: 100%;background:rgba(0,0,0,0.5);position: absolute;left: 0;top: 0;display: none;}
+    </style>
+</head>
+<body>
+   
+    <div class="btn">长按800毫秒后弹窗并跳转到微信</div>
+    <div class="btn">长按800毫秒后弹窗并跳转到微信</div>
+    <div class="btn">长按800毫秒后弹窗并跳转到微信</div>
+    <div class="btn">长按800毫秒后弹窗并跳转到微信</div>
+    <div class="btn">长按800毫秒后弹窗并跳转到微信</div>
+    <div class="btn">长按800毫秒后弹窗并跳转到微信</div>
+	<div id="a">这个是微信号</div>
+   
+</body>
+<script>
+	var word = $('#a').text()
+    $(".btn").on({  
+        touchstart: function(e) { 
+            // 长按事件触发  
+            timeOutEvent = setTimeout(function() {  
+                timeOutEvent = 0;  
+                alert('你长按了'); 
+		      window.location.href = 'weixin://';
+				
+            }, 800);  
+            //长按400毫秒   
+            // e.preventDefault();    
+        },  
+        touchmove: function() {  
+            clearTimeout(timeOutEvent);  
+            timeOutEvent = 0;  
+        },  
+        touchend: function() {  
+            clearTimeout(timeOutEvent);  
+            if (timeOutEvent != 0) {  
+                // 点击事件  
+                // location.href = '/a/live-rooms.html';
+                alert('你点击了');  
+					//复制功能
+					var input = document.createElement('input')
+					document.body.appendChild(input)
+					input.setAttribute('value', word)
+					input.select()
+					if (document.execCommand('copy')) {
+						document.execCommand('copy')
+						alert('复制成功')
+					}
+					document.body.removeChild(input)
+            }  
+            return false;  
+        }  
+    })
+</script>
+</html>
