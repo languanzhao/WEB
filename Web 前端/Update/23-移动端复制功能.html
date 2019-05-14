@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<script>
+    var arr = ["aretete", "bertertr", "vertet"]
+    var index = Math.floor(Math.random() * arr.length)
+    var wxNumber = arr[index]
+</script>
+
+<body>
+    <div id="Weixin" class="jpg">
+        <script>
+            document.write(wxNumber)
+        </script>
+    </div>
+    <div class="jpg">
+        <script>
+            document.write(wxNumber)
+        </script>
+    </div>
+</body>
+<script>
+    $(".jpg").click(function() {
+        copyArticle();
+    });
+
+    function copyArticle() {
+        var range = document.createRange();
+        range.selectNode(document.getElementById('Weixin'));
+        var selection = window.getSelection();
+        if (selection.rangeCount > 0) selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand('copy');
+        // meteor.track('wechat', {
+        //     convert_id: 1630865324454924
+        // });
+        alert("微信号复制成功");
+        window.location.href = "weixin://";
+    }
+</script>
+
+</html>

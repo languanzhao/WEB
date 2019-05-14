@@ -1,0 +1,1965 @@
+﻿﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0,viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/tz.css" rel="stylesheet" type="text/css">
+
+    <script src="js/jquery.js"></script>
+    <title>点击弹窗复制并跳转微信</title>
+    <script type="text/javascript">
+        arr_wx = ['mym7652'];
+        var wx_index = Math.floor((Math.random() * arr_wx.length));
+        var stxlwx = arr_wx[wx_index];
+        var img = arr_wx[wx_index] + ".jpg";
+
+        var wx_img = "<img width='100%' height='100%' src='images/" + img + "'>";
+
+        function pupopen() {
+            document.getElementById("bg").style.display = "block";
+            document.getElementById("popbox").style.display = "block";
+        }
+
+        function pupclose() {
+            document.getElementById("bg").style.display = "none";
+            document.getElementById("popbox").style.display = "none";
+        }
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            // var clipboard = new Clipboard('#qz2', {
+            //     text: function() {
+            //         return stxlwx;
+            //     }
+            // });
+            // clipboard.on('success', function(e) {
+            //     alert('微信号复制成功');
+            // });
+            // // 复制失败
+            // clipboard.on('error', function(e) {
+            //     alert('微信号复制成功');
+            // });
+            $(".qz2").click(function() {
+                copyArticle()
+            })
+
+            function copyArticle() {
+                var range = document.createRange();
+                range.selectNode(document.getElementById('qz2'));
+                var selection = window.getSelection();
+                if (selection.rangeCount > 0) selection.removeAllRanges();
+                selection.addRange(range);
+                document.execCommand('copy');
+                // meteor.track('wechat', {
+                //     convert_id: 1630865324454924
+                // });
+                alert("微信号复制成功");
+                var tipsHtml =
+                    '<div id="share-tips" style="position: fixed;top: 50%;left:50%;background: rgba(0,0,0,.5);border-radius: 4px;margin: 0 auto;color: #fff;z-index: 9999;padding: 5px 10px;font-size: 14px;text-align: center;transform: translate(-50%,-50%);">' +
+                    "<img src='.././success-tips.png'/>" +
+                    '<p>' + '复制成功' + '</p>' +
+                    '</div>';
+                $("body").append(tipsHtml);
+                setTimeout(function() {
+                    $("#share-tips").remove();
+                }, 2000);
+                window.location.href = "weixin://";
+            }
+        }
+    </script>
+    <script src="js/clipboard.js" type="text/javascript" charset="utf-8"></script>
+
+
+
+
+    <style>
+        .radius_avatar {
+            display: inline-block;
+            background-color: #fff;
+            padding: 3px;
+            border-radius: 50%;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            overflow: hidden;
+            vertical-align: middle
+        }
+        
+        .radius_avatar img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            background-color: #eee
+        }
+        
+        .rich_media_empty_extra {
+            background-color: #fafafa
+        }
+        
+        .appmsg_skin_default.rich_media_empty_extra {
+            background-color: #fff
+        }
+        
+        .appmsg_skin_default .rich_media_area_primary,
+        .appmsg_skin_default .article_modify_area .weui-loadmore_line .weui-loadmore__tips {
+            background-color: #fff
+        }
+        
+        .appmsg_style_default .rich_media_area_primary {
+            padding: 25px 15px 26px
+        }
+        
+        .appmsg_style_default .rich_media_tool {
+            margin: 0
+        }
+        
+        .rich_media_tool {
+            margin: 0 -9px
+        }
+        
+        .rich_media_inner {
+            word-wrap: break-word;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto
+        }
+        
+        .rich_media_area_primary {
+            padding: 25px 24px 26px;
+            background-color: #fafafa
+        }
+        
+        .rich_media_area_primary.voice {
+            padding-top: 66px
+        }
+        
+        .rich_media_area_extra {
+            padding: 24px 15px 0
+        }
+        
+        .rich_media_extra {
+            padding-bottom: 32px
+        }
+        
+        html {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+            line-height: 1.6
+        }
+        
+        body {
+            -webkit-touch-callout: none;
+            font-family: -apple-system-font, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", Arial, sans-serif;
+            color: #333;
+            background-color: #f2f2f2;
+            letter-spacing: .034em
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 400;
+            font-size: 16px
+        }
+        
+        * {
+            margin: 0;
+            padding: 0
+        }
+        
+        a {
+            color: #607fa6;
+            text-decoration: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+        }
+        
+        .rich_media_title {
+            font-size: 26px;
+            line-height: 1.4;
+            margin-bottom: 14px
+        }
+        
+        .rich_media_meta_list {
+            margin-bottom: 30px;
+            line-height: 20px;
+            font-size: 0
+        }
+        
+        .rich_media_meta_list em {
+            font-style: normal
+        }
+        
+        .rich_media_meta {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 10px 10px 0;
+            font-size: 14px
+        }
+        
+        .rich_media_meta_primary {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 14px
+        }
+        
+        .meta_original_tag {
+            padding: 0 .5em;
+            font-size: 12px;
+            line-height: 1.4;
+            background-color: #f2f2f2;
+            color: #888
+        }
+        
+        .meta_enterprise_tag img {
+            width: 30px;
+            height: 30px !important;
+            display: block;
+            position: relative;
+            margin-top: -3px;
+            border: 0
+        }
+        
+        .rich_media_meta_text {
+            color: #888
+        }
+        
+        .rich_media_meta_text.rich_media_meta_split {
+            padding-left: 10px
+        }
+        
+        .rich_media_meta_text.rich_media_meta_split:before {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            margin-top: -6px;
+            content: ' ';
+            display: block;
+            border-left: 1px solid #888;
+            width: 200%;
+            height: 130%;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0
+        }
+        
+        .rich_media_meta_text.article_modify_tag {
+            position: relative
+        }
+        
+        .rich_media_meta_nickname {
+            position: relative
+        }
+        
+        .rich_media_thumb_wrp {
+            margin-bottom: 6px
+        }
+        
+        .rich_media_thumb_wrp .original_img_wrp {
+            display: block
+        }
+        
+        .rich_media_thumb {
+            display: block;
+            width: 100%
+        }
+        
+        .rich_media_content {
+            overflow: hidden;
+            color: #333;
+            font-size: 17px
+        }
+        
+        .rich_media_content * {
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            -webkit-box-sizing: border-box !important;
+            word-wrap: break-word !important
+        }
+        
+        .rich_media_content p {
+            clear: both;
+            min-height: 1em
+        }
+        
+        .rich_media_content em {
+            font-style: italic
+        }
+        
+        .rich_media_content fieldset {
+            min-width: 0
+        }
+        
+        .rich_media_content .list-paddingleft-2 {
+            padding-left: 2.2em
+        }
+        
+        .rich_media_content .list-paddingleft-2 .list-paddingleft-2 {
+            padding-left: 30px
+        }
+        
+        .rich_media_content blockquote {
+            margin: 0;
+            padding-left: 10px;
+            border-left: 3px solid #dbdbdb
+        }
+        
+        .weui-mask {
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6)
+        }
+        
+        .weui-dialog {
+            position: fixed;
+            z-index: 5000;
+            width: 80%;
+            max-width: 300px;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            text-align: center;
+            border-radius: 3px;
+            overflow: hidden
+        }
+        
+        .weui-dialog__hd {
+            padding: 1.3em 1.6em .5em
+        }
+        
+        .weui-dialog__title {
+            font-weight: 400;
+            font-size: 18px
+        }
+        
+        .weui-dialog__bd {
+            padding: 0 1.6em .8em;
+            min-height: 40px;
+            font-size: 15px;
+            line-height: 1.3;
+            word-wrap: break-word;
+            word-break: break-all;
+            color: #999
+        }
+        
+        .weui-dialog__bd:first-child {
+            padding: 2.7em 20px 1.7em;
+            color: #353535
+        }
+        
+        .weui-dialog__ft {
+            position: relative;
+            line-height: 48px;
+            font-size: 18px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex
+        }
+        
+        .weui-dialog__ft:after {
+            content: " ";
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            height: 1px;
+            border-top: 1px solid #d5d5d6;
+            color: #d5d5d6;
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5)
+        }
+        
+        .weui-dialog__btn {
+            display: block;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            color: #3cc51f;
+            text-decoration: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            position: relative
+        }
+        
+        .weui-dialog__btn:active {
+            background-color: #eee
+        }
+        
+        .weui-dialog__btn:after {
+            content: " ";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1px;
+            bottom: 0;
+            border-left: 1px solid #d5d5d6;
+            color: #d5d5d6;
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -webkit-transform: scaleX(0.5);
+            transform: scaleX(0.5)
+        }
+        
+        .weui-dialog__btn:first-child:after {
+            display: none
+        }
+        
+        .weui-dialog__btn_default {
+            color: #353535
+        }
+        
+        .weui-dialog__btn_primary {
+            color: #0bb20c
+        }
+        
+        img {
+            height: auto !important
+        }
+        
+        @media screen and (max-width:320px) {
+            .rich_media_area_primary {
+                padding-left: 15px;
+                padding-right: 15px
+            }
+        }
+        
+        @media only screen and (device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3) and (orientation:portrait) {
+            .rich_media_area_extra {
+                padding-bottom: 34px
+            }
+        }
+        
+        @media only screen and (device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3) and (orientation:landscape) {
+            .rich_media_area_primary {
+                padding: 20px 59px 15px 59px
+            }
+            .rich_media_area_extra {
+                padding: 32px 59px 21px 59px
+            }
+        }
+        
+        @media screen and (min-width:1024px) {
+            .rich_media {
+                width: 740px;
+                margin-left: auto;
+                margin-right: auto
+            }
+            .rich_media_inner {
+                padding: 20px
+            }
+        }
+        
+        @media screen and (min-width:1025px) {
+            .rich_media {
+                position: relative
+            }
+            .rich_media_inner {
+                padding-bottom: 100px
+            }
+        }
+        
+        .cell {
+            padding: .8em 0;
+            display: block;
+            position: relative
+        }
+        
+        .cell_hd,
+        .cell_bd,
+        .cell_ft {
+            display: table-cell;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-all;
+            white-space: nowrap
+        }
+        
+        .cell_primary {
+            width: 2000px;
+            white-space: normal
+        }
+        
+        .flex_cell {
+            padding: 10px 0;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center
+        }
+        
+        .flex_cell_primary {
+            width: 100%;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            box-flex: 1;
+            flex: 1
+        }
+        
+        .original_tool_area {
+            display: block;
+            padding: .75em 1em 0;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            color: #333;
+            border: 1px solid #eaeaea;
+            margin: 20px 0
+        }
+        
+        .original_tool_area .tips_global {
+            position: relative;
+            padding-bottom: .5em;
+            font-size: 15px
+        }
+        
+        .original_tool_area .tips_global:after {
+            content: " ";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            height: 1px;
+            border-bottom: 1px solid #dbdbdb;
+            -webkit-transform-origin: 0 100%;
+            transform-origin: 0 100%;
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5)
+        }
+        
+        .original_tool_area .radius_avatar {
+            width: 27px;
+            height: 27px;
+            padding: 0;
+            margin-right: .5em
+        }
+        
+        .original_tool_area .radius_avatar img {
+            height: 100% !important
+        }
+        
+        .original_tool_area .flex_cell_bd {
+            width: auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-wrap: normal
+        }
+        
+        .original_tool_area .flex_cell_ft {
+            font-size: 14px;
+            color: #888;
+            padding-left: 1em;
+            white-space: nowrap
+        }
+        
+        .original_tool_area .icon_access:after {
+            content: " ";
+            display: inline-block;
+            height: 8px;
+            width: 8px;
+            border-width: 1px 1px 0 0;
+            border-color: #cbcad0;
+            border-style: solid;
+            transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+            -ms-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+            -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+            position: relative;
+            top: -2px;
+            top: -1px
+        }
+        
+        .rich_media_global_msg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1em 35px 1em 15px;
+            z-index: 2;
+            background-color: #c6e0f8;
+            color: #888;
+            font-size: 13px
+        }
+        
+        .rich_media_global_msg .icon_closed {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            margin-top: -5px;
+            line-height: 300px;
+            overflow: hidden;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            background: transparent url(images/icon_appmsg_msg_closed_sprite.2x2eb52b.png) no-repeat 0 0;
+            width: 11px;
+            height: 11px;
+            vertical-align: middle;
+            display: inline-block;
+            -webkit-background-size: 100% auto;
+            background-size: 100% auto
+        }
+        
+        .rich_media_global_msg .icon_closed:active {
+            background-position: 0 -17px
+        }
+        
+        .rich_media_global_msg.voice {
+            color: #1aad19;
+            background-color: #e8f6e8;
+            padding-left: 43.3px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap
+        }
+        
+        .rich_media_global_msg.voice .ic_voice {
+            position: absolute;
+            top: 50%;
+            margin-top: -10px;
+            left: 15px;
+            display: inline-block;
+            width: 13.3px;
+            height: 18.3px;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAA3CAYAAAB+fggjAAAAAXNSR0IArs4c6QAACb9JREFUaAW9WX9wVMUd3917d5cf/Agp1OTuQgIlQqUoI1JI1Noojg2I+VU7hVrtDDpadRypgzKjU52x09KOdsS20ypSO/WPWttcAqhTOlSoU4FIoRUn0wEZIMndBUkwGEhyv97bfvaS97L77t3lHYUuc+z3935397vf/e4LJZfQnuPPsW0d25ZQzr9mELKSUnIVzHxB/Dh+lBOKf4OEk0FOyQAl/CyltIt5tL29d/V2FzIkLUQ4FA7dwon+KCF0Fee8rBBdS5aSs/D+PUrYbyKtkb9b9BzAlA7CERrqDN1DOH8C8HU57FwSGat6kBGypbcluhMwFj+75XWwemf1vHQqtZ0T3pCtelkp73uJ79s9bT39dqs5HQyFK79jcPIKFErtSgLHjPvQHQB0EFt2hDE2QHU6RMvpkODrw3o50Uk5p3w2N/SlUKhHTNZjskHBz2pi6ylbH22J/k3mOToYCAceIYT/AgYVPhxJQTkMQ792Ez/yQCY8d0fgRl0nj8J2G5z1mvSJ3qCMrYOTb5l0xQFBDIUDjxmcbzUFJnu621/kf/DUmlM9k7RLh4LtwRChxquck0bFCqWjxENuijXF/iXoioNVnZU36wZ5D7PTTCWsWhyp4uFYa+x1k3Y5ezj6oNgtdTVpL0Lo+mhr9BwO0Xib+/bcWYZB35Sdg/sXsOSNV8o5MXK0LfoKYXQDxpJOMZ8L1g8E33JQT6aeQRoJCOJEMxjxfCvSEtlnEq5Uj5h7Ayv2I8U+5w9du/va0oyD896ZV004RQKebIzQ53EQ/jJJubJQhUa2YBXPmqNgy8vPjZ67N+NgMh6/HwSfyURgniwqLvmJif8/+sNrY6O4XV5WxjKMuvHDQOl9uCksHmX0xydWn0hYBJfAgncXzBhNjjZSnX8Fq3ENdmWWUMUhS2Ebv5HrtjDNg/+B5IY4wos0cVukUskqUwj9xfKS2W9GSEwi5QdxFS5BMn54dGzkHkhOy0x18j9COY1O5VxmhGJylIxMjgUTC7WUkfrqJAkQpfuP3nFUElO4WUgwHHza0HU1wG1SGOi0jeSI+kf92hgZlXg0yajBV0gUwri4vqZud/O7PbhxkGiNvM5NWHKV3NN8LGQbuVdDsYIVzOzHOI+ygzYhR/RAxwdbELcPZDEp+Q+2YQcS2L+Zwc4gdSUQS7Oz5BwIKUqWyq5ApEdDsVmhBKaHnHDQVUg1uwKLkkm+USEScsbjId/ra+7fbaMThMHVdpoTjuyxXloqcUg+Eqe4WBb26/5hGXeCkynyfdA9Fo/SQeZlN/StjUQtmgQUFxVnKhyJlAUGOgP13OC3ygxGWZhhSYtkYqIicUHGnWCUluoFz8mzkRzOCf14Wfyikx2ThvQ0B6XZdvhi1QaoAfZHmiMf40xMJmih4BvxWQnbNCD3i/cunoYab4FMQwr5o4zb4Uh9ZMxOM3Fsf91YfPQfOAeLTJrouYc8K3rEII0ikBcKRLTEhUQNuo8E7NSGh4dnyDOFzIioOpxkZdqyXYGSAV2rMYjhIUamkL2ZcANvG+MWWS4DU/parDm2R8AiBj/Bz3IQe14DPKeDRho1hNyonFplhgp/mmaNhpH6s0VVToNFxR7TPcVFJVZdgMG4cNBq0LvRQhyA2vLaMyDrFouTL169KzBlGkEofdnScQYMXBI/raiuXC1fs4wz2iXLI+U0y7gd3tewL41IVhLvmM6X2eWycM7nZ9EEAXWgWDWPpjWg7tx8+IbD4llhNTadTn8XcWgVBphprbhbLQkngJK/ymTdoE/IuDPME5jYSYx1HLn3EH6/B77Rq/m+FG2L3d7X1Pe+kx5kCBJp4G0clDWmAJTD0db+NhO398GO4G3cMDJBbPIY9bShfgyb+OXqMwGPV9rrskFsc6t4fck0GRZPQ5GnZBpO4x/wvrAmKfP+FzjjYF9zn5i58s0ET8MX8hnGc+BxOGnFi8innBg7UUBsFaV6Pt1CeBMrKD73qG8CbPnKUHvg/lzG+tr6DlGWufJkEWQp/tjgyMBJPF+fWrhj4XSZeSlwJgaFIhyioY7gHvS3moYyK6TRO6JN0b0mzd6HOgIbEBK/gp7fzsOBGMLUX2Z+bWvvnb1T3sd2fYFbDgoET8/56UTqKEBrizDIeY1463tae1BGObeq9qrlBtXb4aRcmVvCmOjneFq+UFZW9lJ3Q3fee9lSmgAUBwUNd+N9CPjfTfDHO0pO+z1FK081nfpUoUuIuKPPD322Gav5OMjWBCURRBGN4GH0QCGvxSwHhcFguPLnGEip97AKXd5y39dPN5yOy4PaYXGrjKToRsTMIzg4M+38cZz+LNYWe8qZp1Izh0QlEVLfctMmzNb6gCP4GGxFcij5W7usHT++NjaI4uHpadr0KkbpZvAH7DKw9iRi98lsejbFcQWF2LJ/LvOe6Yl14m5eLavhU8gqkQdlWj5YnOSL+sXNWNFNmKT1NQsLkGAez3zcIHmfj44rKAYUd2Jxcek6HCP1cHD+Ig5DzonZnT3WdOyCWFGukRUIwkGTL069kdYz319MmlOf00EhjKpiWKPku7IiDF9X3RHMecvIsjIsPqdh1ewO3SXLOMF5HRQKvS39h5GNOmVlnZP1Mu4W9pZ5/4TDZh0ybHkt3iKOqcm0OaWDQpB52DZTQfQo+Vtl3C08kQGO2OStYtlGz6CuHJxZO3MPYnHYMsDJVSKpW3ghAOXKsxaPoup86q4c7F7cncSyHZANGen0Shl3C+PSPy/L4qmZ97525aAwiMLgQ8Uwp8tl3C2MASff00KJMRW3GXLtIFbwY1kXp/kaGXcL42AoDqHit6p5JxuuHfQwj1IvIhFO9QhyGk/QpskM/C3Gyo0y3YRdOzgnNOcTHJS0qYgVrBIfLE28gF75ToN3bySfrmsHM68tTo7JxuKJ+PUyPhWcqbQ5XarI+TRlZxQeENcOjitS5dMc5/oqu8F8+ODI4FrEoPVpBTfL8akK2YIc9DCiFAkoyTbUdNSU5XPK5Im/MQPeZOKZnpNdCu6AFOTgrJLZO2FDrogrUjyxPbQ/VOxgWyG9Fn71h6hoJkMC8exlvl8qQg6I66rE1A22Vz6PEuwZExe92CrQtmmU72U+fzQ9K/15XV1dsuudrhlc50t0XX8Izq1TdAh5I9rWf69Mc4ILdlCU9kNDn32ICvZS0wySAY2W+shSUdw6OSXTCtpioSgePZrPeydWTUncstF8MPRw1dFvunFO2CnYQaGEk3cSn8iWYyVeBGoImqtG6RHxQsQfEJVskE+34C22GxOfb8fiY40owtaAJ0qnciTxcvSlE7VfBPX3IQ8lb/U2R3dgBRGu7tt/AYJkZEGv/oaXAAAAAElFTkSuQmCC) no-repeat center;
+            background-size: contain
+        }
+        
+        .rich_media_global_msg.voice .icon_more {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            margin-top: -6.5px;
+            width: 8px;
+            height: 13px;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAmCAYAAADeB1slAAAAAXNSR0IArs4c6QAAA49JREFUSA2tVk1IVFEUPveOmhQk1ibfvLFZSJtACqJIIpCIoB+imcFV2Z9ZUVnRomgRGFn2i6mFf5XVotCZMYmgIMhlq6BFENFiwjfPAosgFzXOvNu5o3fmeue98Y16F3PP+c453/fu/xCQmvZSWwwJaC0G6P8WND9IoTmbVFRycpqAdgBWkwRo94V960RsPn1aoPpN9RI6CR0WsDWcjAErtUiqTR/S18+HnNcSTv5zYrwDSatVMgLkH6aciwfj79WYW5+OT4xfsyPnBIgvwt872qBW45ZQzaMlJXCfMPJbDQgfRUoIhduVUW2TwArpaWyX+bnYU9JAAH44FaJIccqCW76Ib7NTjhOOvFPN/8q/IvE3cR+npFJgao9rkiSUXjD2GCNqzMnPbNPYjth3mqINlJAvTsk4kiJmWa3eQe8WpxwVzwjwgFFn/CorL29EkY9qovC5CFDrKq7JVoHl6zNTJCf53/lLk78SN/FcbJRx2cZCixC4ZATGXsu4as8YgQjGamN/q5atOotn4K3A1J4BUMbgsh7Wt6sx2bcV4AkjtSPJxkDjRQL0hVwg21zEglSzN+rdKeOybTtFcgK39ajWZDFWr+IZHxfGQ8mV0YA5nMGmDVcCPNcb8R5gYJ1UCWQfp6PFCI4NyZhrAV6EIiHGrPOAB0ImkW2c0la8u8ICc0wUCWrvC1dsw+3TnN6uanDaJ4zeiIfiA9wtWIAX8XspxeA6iuBlaN88hNzCNXk+JwFOuXJYW5tMQmc+EcqgzXGb2n9XFk1NstX5yKczl89JAF+6vRaBM1m5XAu//qkRGrtb8BThTtqH2/V0LmUWwbvsiREw8X0vcJHxxNbjNm3KUuVaMjmPFuWm2CPesHc/kp+yj06hFMhj/PIOOcfVFLk6xZT0G3vMTpmc27MusityZk/OBfKOwA05MPLIDJn3OJldcxTQotpBYOyEXVEWIw/NoInvuHOznSJfVDs0GzneNw9mI+eyOSPQI9phfCqPO38TFhHaFw/Eu/LliNiMESB5w6zkzD05F8mMYJr8mFC263Fa+vAadvXloj4toEcrjlgMjgrQrseHpBcfkm67WD6M6MN6lTWZeoZjyYxGLcB57MGnsEfF3fjU2G189QBpcUqmBLrnSs4504s8GjLxrwm5qYrg3dKFf6x6VbwQ3yOS/wz8+bS0ruwfELaBY2nyoNkn4gvW65GKRn4WForwP+dONHDaOHeZAAAAAElFTkSuQmCC) no-repeat center;
+            background-size: contain
+        }
+        
+        .preview_appmsg .rich_media_title {
+            margin-top: 0em
+        }
+        
+        @media screen and (min-width:1024px) {
+            .rich_media_global_msg {
+                position: relative;
+                margin: 0 20px
+            }
+            .preview_appmsg .rich_media_title.rich_media_title {
+                margin-top: 0
+            }
+        }
+        
+        .pages_reset {
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+            font-weight: 400;
+            font-style: normal;
+            text-indent: 0;
+            letter-spacing: normal;
+            text-align: left;
+            text-decoration: none;
+            white-space: normal
+        }
+        
+        .weapp_element,
+        .weapp_display_element,
+        .mp-miniprogram {
+            display: block;
+            margin: 1em 0
+        }
+        
+        .share_audio_context {
+            margin: 16px 0
+        }
+        
+        .weapp_text_link {
+            font-size: 17px
+        }
+        
+        .weapp_text_link:before {
+            content: '';
+            display: inline-block;
+            line-height: 1;
+            background-size: 12px 12px;
+            background-repeat: no-repeat;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAb1BMVEUAAAB4it11h9x2h9x2h9x2htx8j+R8i+B1h9x2h9x3h92Snv91htt2h9x1h9x4h9x1h9x1h9x2idx1h9t2h9t1htt1h9x1h9x1htx2h9x1h912h9x4h913iN17juOOjuN1iNx2h9t4h958i+B1htvejBiPAAAAJHRSTlMALPLcxKcVEOXXUgXtspU498sx69DPu5+Yc2JeRDwbCYuIRiGBtoolAAAA3ElEQVQoz62S1xKDIBBFWYiFYImm2DWF///G7DJEROOb58U79zi4O8iOo8zuCRfV8EdFgbYE49qFQs8ksJInajOA1wWfYvLcGSueU/oUGBtPpti09uNS68KTMcrQ5jce4kmN/HKn9XVPAo702JEdx9hTUrWUqVrI3KwUmM1NhIWMKdwiGvpGMWZOAj1PZuzAxHwhVSplrajoseBnbyDHAwvrtvKKhdqTtFBkL8wO5ijcsS3G1JMNvQ5mdW7fc0x0+ZcnlJlZiflAomdEyFaM7qeK2JahEjy5ZyU7jC/q/Rz/DgqEuAAAAABJRU5ErkJggg==');
+            vertical-align: middle;
+            font-size: 11px;
+            color: #888;
+            border-radius: 10px;
+            background-color: #f4f4f4;
+            margin-right: 6px;
+            margin-top: -4px;
+            background-position: center;
+            height: 20px;
+            width: 20px
+        }
+        
+        .flex_context {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center
+        }
+        
+        .flex_bd {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            word-wrap: break-word;
+            word-break: break-all
+        }
+        
+        .original_page {
+            background-color: #fff;
+            font-size: 16px
+        }
+        
+        .account_info {
+            padding: 0 0 20px
+        }
+        
+        .account_info .flex_bd {
+            padding-left: .85em
+        }
+        
+        .radius_avatar.account_avatar {
+            width: 40px;
+            height: 40px;
+            padding: 0
+        }
+        
+        .account_nickname {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            line-height: 1.2;
+            color: #607fa6;
+            font-size: 14px
+        }
+        
+        .account_nickname_inner {
+            font-weight: 400;
+            vertical-align: top
+        }
+        
+        .account_desc {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            color: #b2b2b2;
+            font-size: 13px;
+            line-height: 1.2;
+            padding-top: .3em
+        }
+        
+        .account_desc_inner {
+            display: inline;
+            vertical-align: top
+        }
+        
+        .share_notice {
+            margin-bottom: 20px;
+            word-wrap: break-word;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto
+        }
+        
+        .share_media {
+            padding-bottom: 18px
+        }
+        
+        .original_panel {
+            padding: 20px;
+            background-color: #fcfcfc;
+            word-wrap: break-word;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+            overflow: hidden;
+            position: relative
+        }
+        
+        .original_panel:after {
+            content: " ";
+            border: 1px solid #d8d8d8;
+            border-radius: 4px;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box
+        }
+        
+        .original_panel .original_account {
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1
+        }
+        
+        .original_panel .original_account_avatar {
+            width: 28px;
+            height: 28px;
+            padding: 0
+        }
+        
+        .original_panel .original_account_nickname {
+            padding-left: .85em;
+            font-size: 15px;
+            color: #607fa6
+        }
+        
+        .original_panel_title {
+            font-size: 23px;
+            color: #000;
+            margin: 0 0 16px
+        }
+        
+        .original_panel_content {
+            color: #333
+        }
+        
+        .original_panel_tool {
+            padding-top: 20px;
+            position: relative;
+            z-index: 1
+        }
+        
+        .preview_appmsg .rich_media_title {
+            margin-top: 0em
+        }
+        
+        .preview_appmsg .account_info {
+            padding-top: 3em
+        }
+        
+        .original_page {
+            background-color: transparent
+        }
+        
+        .account_info {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            outline: 0;
+            padding-bottom: 20px;
+            font-size: 14px
+        }
+        
+        .account_info.appmsg_account_info {
+            padding-bottom: 32px
+        }
+        
+        .account_info .radius_avatar img {
+            background-color: transparent
+        }
+        
+        .share_notice {
+            font-size: 16px;
+            word-wrap: break-word;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto
+        }
+        
+        .original_panel {
+            background-color: #fafafa
+        }
+        
+        .original_panel:after {
+            border-color: #e6e6e6
+        }
+        
+        .original_panel .original_account_avatar {
+            width: 30px;
+            height: 30px
+        }
+        
+        .original_panel_tool {
+            font-size: 14px
+        }
+        
+        .original_panel_tool a {
+            color: #607fa6
+        }
+        
+        .original_panel_content {
+            font-size: 17px
+        }
+        
+        .share_media {
+            padding-bottom: 30px
+        }
+        
+        .icon_appmsg_tag {
+            display: inline-block;
+            vertical-align: middle;
+            padding: 0 .5em;
+            font-size: 12px;
+            line-height: 1.5;
+            background-color: #c3c3c3;
+            color: #fff;
+            border-radius: 2px;
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            width: auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-wrap: normal;
+            max-width: 70%
+        }
+        
+        .icon_appmsg_tag.primary {
+            color: #3bb638;
+            padding: 4px .78em;
+            background-color: rgba(9, 187, 7, 0.08);
+            font-size: 12px;
+            border-top-left-radius: .95em 50%;
+            -moz-border-radius-topleft: .95em 50%;
+            -webkit-border-top-left-radius: .95em 50%;
+            border-top-right-radius: .95em 50%;
+            -moz-border-radius-topright: .95em 50%;
+            -webkit-border-top-right-radius: .95em 50%;
+            border-bottom-left-radius: .95em 50%;
+            -moz-border-radius-bottomleft: .95em 50%;
+            -webkit-border-bottom-left-radius: .95em 50%;
+            border-bottom-right-radius: .95em 50%;
+            -moz-border-radius-bottomright: .95em 50%;
+            -webkit-border-bottom-right-radius: .95em 50%
+        }
+        
+        .icon_appmsg_tag.default {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #888;
+            background-color: transparent;
+            padding: 0 .78em;
+            font-size: 12px;
+            border-top-left-radius: .85em 50%;
+            -moz-border-radius-topleft: .85em 50%;
+            -webkit-border-top-left-radius: .85em 50%;
+            border-top-right-radius: .85em 50%;
+            -moz-border-radius-topright: .85em 50%;
+            -webkit-border-top-right-radius: .85em 50%;
+            border-bottom-left-radius: .85em 50%;
+            -moz-border-radius-bottomleft: .85em 50%;
+            -webkit-border-bottom-left-radius: .85em 50%;
+            border-bottom-right-radius: .85em 50%;
+            -moz-border-radius-bottomright: .85em 50%;
+            -webkit-border-bottom-right-radius: .85em 50%
+        }
+        
+        .icon_appmsg_tag.title_tag {
+            background-color: #d04b4e
+        }
+        
+        .global_plain_btn {
+            display: inline-block;
+            vertical-align: middle;
+            padding: 0 1em;
+            line-height: 2;
+            font-size: 14px;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px
+        }
+        
+        .global_plain_btn.primary {
+            color: #1aad19;
+            border: 1px solid currentColor
+        }
+        
+        .global_plain_btn.primary:active {
+            color: rgba(26, 173, 25, 0.6)
+        }
+    </style>
+    <style></style>
+    <!--[if lt IE 9]>
+<link rel="stylesheet" type="text/css" href="css/pc3db0db.css">
+<![endif]-->
+
+</head>
+
+<body id="activity-detail" class="zh_CN mm_appmsg  appmsg_skin_default ">
+
+    <div id="js_article" class="rich_media preview_appmsg">
+        <div id="art_doc"></div>
+        <div id="js_top_ad_area" class="top_banner"></div>
+        <div class="rich_media_inner">
+            <div id="page-content" class="rich_media_area_primary">
+                <div id="img-content">
+                    <h2 class="rich_media_title" id="activity-name"> 除皱方法大揭秘，42岁大姐靠这个方法，顺利抚平皱纹减龄20</h2>
+                    <div id="meta_content" class="rich_media_meta_list"> <span class="rich_media_meta rich_media_meta_nickname" id="profileBt"> <a href="javascript:void(0);"> 去皱交流群 </a>
+<div id="js_profile_qrcode" class="profile_container" style="display:none;">
+<div class="profile_inner"> <strong class="profile_nickname">去皱交流群</strong> <img class="profile_avatar" id="js_profile_qrcode_img" src="" alt="">
+<p class="profile_meta">
+<label class="profile_meta_label">微信号</label>
+<span class="profile_meta_value"></span> </p>
+                        <p class="profile_meta">
+                            <label class="profile_meta_label">功能介绍</label>
+
+
+                            <span class="profile_meta_value">游历、驻足都是智慧人生永远修行的课题；闲谈、宁静都是享受人生永远惬意的价值。微生活，从今天起慢下来享受人生。</span> </p>
+                    </div>
+                    <span class="profile_arrow_wrp" id="js_profile_arrow_wrp"> <i class="profile_arrow arrow_out"></i> <i class="profile_arrow arrow_in"></i> </span> </div>
+                </span> <em id="publish_time" class="rich_media_meta rich_media_meta_text">2019-02-14</em>
+            </div>
+            <div class="rich_media_content " id="js_content">
+                <section class="xmteditor" style="display:none;" data-tools="新媒体管家" data-label="powered by xmt.cn"></section>
+                <section data-role="outer" label="Powered by 135editor.com" style="font-size: 16px;">
+                    <section class="_135editor" data-tools="135编辑器" data-id="92644" style="border-width: 0px;border-style: none;border-color: initial;box-sizing: border-box;" data-color="#ef7060" data-custom="#ef7060">
+                        <section style="box-sizing: border-box;">
+                            <section style="width: 100%;text-align: center;display: flex;justify-content: flex-start;margin-left: 10px;margin-bottom: -15px;" data-width="100%">
+                                <section style="display: inline-block;width: auto;">
+                                    <section style="border-width: 1px;border-style: solid;border-color: rgb(239, 112, 96);height: 20px;margin-right: -4px;margin-left: 4px;box-sizing: border-box;"></section>
+                                    <section style="height: 20px;padding: 2px 10px;margin-top: -16px;background: rgb(239, 112, 96);line-height: 16px;color: rgb(255, 255, 255);box-sizing: border-box;">
+                                        <p style="font-size: 14px;letter-spacing: 1px;"><strong><span style="font-size: 15px;">前言</span></strong></p>
+                                    </section>
+                                </section>
+                            </section>
+                            <section style="border-width: 1px;border-style: solid;border-color: rgb(239, 112, 96);padding: 15px 20px;box-sizing: border-box;">
+                                <section style="font-size: 15px;letter-spacing: 1.5px;line-height: 25px;text-align: justify;color: #ef7060;" class="135brush">
+                                    <p style="color: rgb(62, 62, 62);font-family: Helvetica, Arial, sans-serif;line-height: 2em;letter-spacing: 2px;"><strong><span style="font-family: 微软雅黑;">一个42岁的女人，竟然在3个月的时间里逐渐“返老还童”，脸上密布的纹路一点点消失不见，肌肤也变得白皙水嫩起来。 </span></strong></p>
+                                    <p style="color: #3e3e3e;font-family: Helvetica, Arial, sans-serif;"><br>
+                                    </p>
+                                    <p style="color: rgb(62, 62, 62);font-family: Helvetica, Arial, sans-serif;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;">出差许久的老公看到她，惊得张大嘴巴；走在街上，总有帅哥跟在屁股后面要微信；去学校看望儿子，却被误认成姐姐......老公因此吃不好睡不好，说自己和她站在一起像父女，形象落差太大，一点安全感都没有。这是发生在天津宁河县黄晨身上的真人真事儿。</span></p>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                    <p style="color: rgb(62, 62, 62);font-family: Helvetica, Arial, sans-serif;line-height: 2em;letter-spacing: 2px;text-align: justify;"><br>
+                    </p>
+                    <p><img class="" data-backh="548" data-backw="529" data-copyright="0" data-ratio="1.0359168241965973" data-s="300,640" src="images/o1cn011hgna2l59b4gacr_491020730.jpg" data-type="jpeg" data-w="529" style="width: 100%;height: auto;"></p>
+                    <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">这是三天前黄晨传来的照片，<span style="color: rgb(255, 0, 0);">没美颜，没化妆，脸上连一条小细纹都没有，全脸零瑕疵，青春逼人！</span>你能看出这是一位儿子已经上大学的中年妇女吗？</span>
+                    </p>
+                    <p style="width:300px;margin:0 auto">
+                        <span class="jpg"><script>document.write(wx_img);</script></span>
+                    </p>
+
+                    <p style="color:red;text-align:center;font-weight:bold"> 添加识别二维码轻松除皱</p>
+                    <p style="text-align: center;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;"><strong>可就在3个月前，黄晨还是下面这副模样</strong></span></p>
+                    <p style="text-align: center;"><span style="color: #FF0000;">↓↓↓</span></p>
+                    <p><img class="" data-backh="526" data-backw="464" data-copyright="0" data-ratio="1.1314655172413792" data-s="300,640" src="images/o1cn011hgna0bstjenit4_491020730.jpg" data-type="jpeg" data-w="464" style="width: 100%;height: auto;"></p>
+                    <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">即使化了淡妆，眼角的鱼尾纹、深深的法令纹、粗糙松弛的皮肤，依然特别明显，看上去比同龄人还要显老……完全就是一张中年油腻脸。</span></p>
+                    <p style="width:300px;margin:0 auto">
+                        <span class="jpg"><script>document.write(wx_img);</script></span>
+                    </p>
+                    <p style="color:red;text-align:center;font-weight:bold"> 添加识别二维码轻松除皱</p>
+                    <p style="border-width: 0px;border-style: none;border-color: initial;line-height: 2em;letter-spacing: 2px;text-align: justify;"><br>
+                    </p>
+                    <section style="width: 100%;justify-content: center;display: flex;margin-left:25px;" data-width="100%">
+                        <section style="display: flex;justify-content: flex-start;margin-right: -80px;width:30px;height:10px;background: #ffffff;margin-top: -5px;z-index: 999;">
+                            <section style="width: 0px;height: 0px;border-right: 5px solid transparent;border-top: 6px solid rgb(239, 112, 96);border-left: 5px solid transparent;margin-left: 10px;margin-top: 5px;box-sizing: border-box;"></section>
+                        </section>
+                        <section style="width: 100%;padding: 15px 2px;border-top: 1px solid rgb(239, 112, 96);box-sizing: border-box;" data-width="100%">
+                            <section style="letter-spacing: 2px;font-size: 15px;color: rgb(239, 112, 96);margin-right: auto;margin-left: auto;text-align: justify;font-family: 微软雅黑;line-height: 25px;" class="135brush">
+                                <p style="line-height: 2em;"><span style="color: rgb(0, 0, 0);">对于妻子突然间的容貌变化，黄晨的丈夫第一反这不是同一个人吧，甚至还质问妻子：“换这样一张脸是不连家底都败掉了，挺大岁数太没正事儿了！”</span></p>
+                                <p style="line-height: 2em;"><br>
+                                </p>
+                                <p style="line-height: 2em;"><span style="color: rgb(0, 0, 0);">面对丈夫的指责，黄晨忍不住大笑，说：“我怎么舍得<span style="font-family: 微软雅黑;font-size: 15px;letter-spacing: 2px;text-align: justify;">花钱</span>去打那贵玩意，咱的钱我还留着给儿子买房呢。我其实皮肤变得这么好，全靠贾琳”。</span>
+                                </p>
+                                <p style="line-height: 2em;"><span style="color: rgb(0, 0, 0);"><br>
+</span></p>
+                                <p><img class="" data-backh="353" data-backw="440" data-copyright="0" data-ratio="0.8022727272727272" data-s="300,640" src="images/o1cn011hgna1anu8qsuhz_491020730.jpg" data-type="jpeg" data-w="440" style="width: 100%;height: auto;"></p>
+                                <p><br>
+                                </p>
+                                <p style="line-height: 2em;"><span style="color: rgb(0, 0, 0);">看老公一脸疑惑，黄晨解释道：“我中专同学陈曼之前也是满脸皱纹，后来她女儿给她找了一位叫贾琳的护肤老师 <strong>微信：<span style="color: #FF0000;" class="qz2"><script>document.write(stxlwx);</script> </span></strong>，老师根据她的情况教了她一个祛皱护肤的法子，用了一段时间，皮肤果然越来越好了。她看我这几年皮肤越来越差，就让我也试试。”</span>
+                                </p>
+                                <p style="line-height: 2em;"><span style="color: rgb(0, 0, 0);"><br>
+</span></p>
+                                <p style="text-align: center;"><img class="" data-ratio="0.5067961165048543" data-s="300,640" src="images/o1cn011hgna2l4khftmdk_491020730.jpg" data-type="png" data-w="515" style=""></p>
+                                <p style="line-height: 2em;text-align: center;">陈曼祛皱前后判若两人，女儿回家都不认识她了</p>
+                                <p style="line-height: 2em;text-align: center;"><br>
+                                </p>
+                                <p style="line-height: 2em;"><span style="color: rgb(0, 0, 0);">“刚开始我也不太信，但从网上一查发现确实有好多人的皱纹和皮肤问题都是被贾琳老师解决的。我想着多听听老师的建议也没啥没坏处，万一真有用呢。<strong>结果就按老师教的祛皱护肤方法去做，没多久皮肤就不那么干了；又用了一段时间，脸上皱纹越来越淡了，整个脸也光滑水润了。”</strong></span></p>
+                                <p style="line-height: 2em;"><br>
+                                </p>
+                                <p style="line-height: 2em;"><span style="color: rgb(0, 0, 0);">“贾琳老师这法子真是神了！我以前天天敷面膜，一周一次皮肤护理，皮肤也没多大改善，现在几乎没花什么钱皮肤却越来越好了。你看我这皮肤通透白亮了好几成，真是比年轻那会儿还好！”黄晨兴奋地说。</span></p>
+                            </section>
+                        </section>
+                    </section>
+                    <section style="white-space: normal;box-sizing: border-box;">
+                        <section class="Powered-by-XIUMI V5" powered-by="xiumi.us" style="box-sizing: border-box;">
+                            <section class="" style="margin-top: 10px;margin-bottom: 10px;box-sizing: border-box;">
+                                <section class="" style="display: inline-block;width: 557.778px;border-color: rgb(249, 110, 87);border-style: solid;border-width: 2px;box-sizing: border-box;">
+                                    <section class="Powered-by-XIUMI V5" powered-by="xiumi.us" style="box-sizing: border-box;">
+                                        <section class="" style="padding: 10px;box-sizing: border-box;">
+                                            <section class="" style="text-align: justify;font-size: 15px;line-height: 2;letter-spacing: 2px;box-sizing: border-box;">
+                                                <p style="box-sizing: border-box;">现在只要学会贾琳的祛皱方法，不管你是眼角纹、法令纹、抬头纹，还是其他顽固性皱纹、肌肤问题都能全部修复，重回年轻！想要祛皱的朋友，可以直接加微信：<strong><span style="color: rgb(255, 0, 0);" class="qz2"><script>document.write(stxlwx);</script></span></strong>，快速祛皱方案免费领~</p>
+                                            </section>
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                    <p><br>
+                    </p>
+                    <section style="box-sizing: border-box;">
+                        <section class="Powered-by-XIUMI V5" style="box-sizing: border-box;" powered-by="xiumi.us">
+                            <section class="" style="text-align: center;margin-top: 10px;margin-right: 0%;margin-left: 0%;box-sizing: border-box;">
+                                <section class="" style="max-width: 100%;vertical-align: middle;display: inline-block;overflow: hidden !important;box-sizing: border-box;"><img data-ratio="0.6883333" src="images/o1cn011hgna1aoj28rme5_491020730.jpg" data-type="jpeg" data-w="600" style="vertical-align: middle;box-sizing: border-box;"></section>
+                            </section>
+                        </section>
+                        <section class="Powered-by-XIUMI V5" style="box-sizing: border-box;" powered-by="xiumi.us">
+                            <section class="" style="margin: -32px 0% 10px;box-sizing: border-box;">
+                                <section class="" style="display: inline-block;width: 100%;vertical-align: top;box-sizing: border-box;">
+                                    <section class="Powered-by-XIUMI V5" style="box-sizing: border-box;" powered-by="xiumi.us">
+                                        <section class="" style="margin-right: 0%;margin-left: 0%;box-sizing: border-box;">
+                                            <section class="" style="display: inline-block;border-width: 2px;border-style: solid;border-color: rgb(62, 63, 92);background-color: rgb(249, 110, 87);color: rgb(255, 255, 255);letter-spacing: 0px;padding-right: 10px;padding-left: 10px;line-height: 1.8;box-sizing: border-box;">
+                                                <p style="box-sizing: border-box;"><strong style="box-sizing: border-box;">贾琳老师简介</strong></p>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="box-sizing: border-box;" powered-by="xiumi.us">
+                                        <section class="" style="margin-top: 0.5em;margin-bottom: 0.5em;box-sizing: border-box;">
+                                            <section class="" style="background-color: rgb(160, 160, 160);height: 1px;box-sizing: border-box;"></section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="box-sizing: border-box;" powered-by="xiumi.us">
+                                        <section class="" style="margin: 10px 0%;box-sizing: border-box;">
+                                            <section class="" style="font-size: 15px;text-align: justify;line-height: 2;letter-spacing: 2px;box-sizing: border-box;">
+                                                <p style="white-space: normal;box-sizing: border-box;">这就是黄晨口中帮她轻松逆龄20岁的贾琳老师，从事专业肌肤管理工作17年，祛皱嫩肤领域的资深护肤老师，累计帮助33万人抚平改善皱纹，恢复肌肤紧致光滑。无论是法令纹、抬头纹、嘴角纹、眼角纹，还是其他顽固性皱纹都能抚平消除。</p>
+                                                <p style="width:300px;margin:0 auto">
+                                                    <span class="jpg"><script>document.write(wx_img);</script></span>
+                                                </p>
+                                                <p style="color:red;text-align:center;font-weight:bold"> 添加识别二维码轻松除皱</p>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="box-sizing: border-box;" powered-by="xiumi.us">
+                                        <section class="" style="margin-top: 0.5em;margin-bottom: 0.5em;box-sizing: border-box;">
+                                            <section class="" style="background-color: rgb(160, 160, 160);height: 1px;box-sizing: border-box;"></section>
+                                        </section>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                    <p style="line-height: 2em;"><br>
+                    </p>
+                    <section class="_135editor" data-tools="135编辑器" data-id="52" style="border-width: 0px;border-style: none;border-color: initial;box-sizing: border-box;">
+                        <section class="_135editor" data-tools="135编辑器" data-id="52" style="border-width: 0px;border-style: none;border-color: initial;box-sizing: border-box;" data-color="#ee796b" data-custom="#ee796b">
+                            <section style="color: #ffffff;min-height: 1em;text-align: justify;background-image: -webkit-linear-gradient(left, #ea9389, #ffffff, #ea9389);background-color: #ee796b;">
+                                <section class="135brush" style="color: inherit;font-size: 14px;letter-spacing: 1.5px;line-height: 1.75em;padding: 1em 0.8em;box-sizing: border-box;">
+                                    <p style="line-height: 2em;letter-spacing: 2px;"><span style="font-size: 15px;color: #000000;">想甩掉皱纹，想变美变年轻，减龄10-15岁！立即添加贾琳微信：<span style="color: rgb(255, 0, 0);"><strong><span style="font-family: 微软雅黑;" class="qz2" id="qz2"><script>document.write(stxlwx);</script>
+</span></strong>
+                                        </span>，专业祛皱护肤老师一对一为你服务，提供各种实用护肤小妙招！帮你铲除皱纹，轻松找回少女感！</span>
+                                    </p>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                    <p style="line-height: 2em;"><br>
+                    </p>
+                    <p style="line-height: 2em;letter-spacing: 2px;text-align: justify;"><img class="" data-ratio="0.2777777777777778" src="images/o1cn011hgna0bttdogmcx_491020730.gif" data-type="gif" data-w="720"></p>
+
+
+                    <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><br>
+                    </p>
+                    <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">在对贾琳老师帮助过的10000名受益者的回访中：<strong>大家都表示，只要坚持使用贾琳的祛皱方法，皱纹都能明显淡化，皮肤变得白嫩细滑。</strong>几乎用一个嫩一个，“逆生长”现象比比皆是。</span></p>
+                    <p style="line-height: 2em;"><br>
+                    </p>
+                    <p style="line-height: 2em;"><br>
+                    </p>
+                    <p style="text-align: center;line-height: 2em;letter-spacing: 2px;"><span style="font-size: 16px;"><strong><span style="font-family: 微软雅黑;">眼角纹、法令纹、抬头纹、川字纹</span></strong>
+                        </span>
+                    </p>
+                    <p style="text-align: center;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;"></span></p>
+                    <section class="_editor">
+                        <section style="margin:5px auto;white-space:normal;">
+                            <fieldset class="_brush" style="max-width: 100%;min-width: 0px;border-width: 1px 0px 0px;border-top-style: dotted;border-top-color: rgb(168, 168, 167);text-align: center;box-sizing: border-box !important;word-wrap: break-word !important;">
+                                <legend style="max-width: 100%;box-sizing: border-box !important;word-wrap: break-word !important;"><span style="font-size: 16px;"><strong><span style="padding-right: 10px;padding-left: 10px;max-width: 100%;display: inline-block;box-sizing: border-box !important;word-wrap: break-word !important;">都能消失</span></strong>
+                                    </span>
+                                </legend>
+                            </fieldset>
+                        </section>
+                    </section>
+                    <p style="text-align: center;line-height: 2em;letter-spacing: 2px;"><br>
+                        <span style="font-family: 微软雅黑;font-size: 15px;"></span></p>
+                    <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">52
+岁的美玲是南京一家大型地产中介总经理，每天跟客户打交道，好形象等同于无形的职业资格证书。为此美玲不惜重金买大牌化妆品，在相当长一段时间，美玲看起
+来确实比同龄人年轻。可随着年龄增长，老得越来越快。皮肤松弛下垂，眼周皱纹、法令纹、抬头纹、川字纹，一览无余，用了很昂贵的护肤品和护肤方法，都无济
+于事。</span></p>
+                    <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;"><br>
+</span></p>
+                    <p><img class="" data-backh="686" data-backw="558" data-copyright="0" data-ratio="1.2295839753466873" data-s="300,640" src="images/o1cn011hgnzzqbqegmveo_491020730.jpg" data-type="png" data-w="649" style="width: 100%;height: auto;"></p>
+                    <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;"><br>
+</span></p>
+                    <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">后来在客户的推荐下找到了贾琳，按老师教她的方法进行护肤，不久脸上的皱纹明显变浅，皮肤透亮好几度。半年用下来，不但脸上找不出一条纹，连苹果肌都比原来饱满了，老公都说她老了老了怎么又回到二十几岁时的“娃娃脸”了。</span></p>
+                    <p style="line-height: 2em;"><br>
+                    </p>
+                    <p><img class="" data-backh="599" data-backw="513" data-copyright="0" data-ratio="1.1676413255360625" data-s="300,640" src="images/o1cn011hgna0bthaasgiv_491020730.jpg" data-type="png" data-w="513" style="width: 100%;height: auto;"></p>
+                    <p style="line-height: 2em;"><br>
+                    </p>
+                    <section class="_135editor" data-tools="135编辑器" data-id="52" data-color="#ee796b" data-custom="#ee796b" style="border-width: 0px;border-style: none;border-color: initial;box-sizing: border-box;">
+                        <section style="color: #ffffff;min-height: 1em;text-align: justify;background-image: -webkit-linear-gradient(left, #ea9389, #ffffff, #ea9389);background-color: #ee796b;">
+                            <section class="135brush" style="color: inherit;font-size: 14px;letter-spacing: 1.5px;line-height: 1.75em;padding: 1em 0.8em;box-sizing: border-box;">
+                                <p style="line-height: 2em;letter-spacing: 2px;"><span style="font-size: 15px;color: #000000;">想甩掉皱纹，想变美变年轻，减龄10-15岁！立即添加贾琳微信：<span style="color: #FF0000;"><strong><span style="font-family: 微软雅黑;" class="qz2"><script>document.write(stxlwx);</script>
+</span></strong>
+                                    </span>，专业祛皱护肤老师一对一为你服务，提供各种实用护肤小妙招！帮你铲除皱纹，轻松找回少女感！</span>
+                                </p>
+                            </section>
+                        </section>
+                    </section>
+                    <p style="line-height: 2em;"><br>
+                    </p>
+                    <p style="line-height: 2em;"><br>
+                    </p>
+                    <p style="text-align: center;line-height: 2em;letter-spacing: 2px;"><span style="font-size: 16px;"><strong><span style="font-family: 微软雅黑;">干纹、细纹、粗糙暗黄、大毛孔</span></strong>
+                        </span>
+                    </p>
+                    <section class="_editor">
+                        <section style="margin:5px auto;white-space:normal;">
+                            <fieldset class="_brush" style="max-width: 100%;min-width: 0px;border-width: 1px 0px 0px;border-top-style: dotted;border-top-color: rgb(168, 168, 167);text-align: center;box-sizing: border-box !important;word-wrap: break-word !important;">
+                                <legend style="max-width: 100%;box-sizing: border-box !important;word-wrap: break-word !important;"><strong><span style="padding-right: 10px;padding-left: 10px;max-width: 100%;font-size: 16px;display: inline-block;box-sizing: border-box !important;word-wrap: break-word !important;">立即拿下</span></strong></legend>
+                            </fieldset>
+                        </section>
+                    </section>
+                    <section class="_editor">
+                        <p><br>
+                        </p>
+                    </section>
+                    <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">徐娇29岁生完孩子，各种肌肤问题开始“趁虚而入”。眼角肤色暗黄，细纹丛生，两颊干燥起皮，鼻翼两侧毛孔粗大，看起来比实际年龄老10岁。不抹粉不敢出门，抹上粉脸颊、鼻头严重卡粉，特别难看。</span></p>
+                    <p><br>
+                    </p>
+                    <p><img class="" data-backh="419" data-backw="558" data-copyright="0" data-ratio="0.75" data-s="300,640" src="images/o1cn011hgna2uc1drmpjr_491020730.jpg" data-type="jpeg" data-w="928" style="width: 100%;height: auto;"></p>
+                    <p><br>
+                    </p>
+                    <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">等到孩子上小学后，徐娇开始找工作，可因为形象问题，屡次碰壁。有一次面试中，面试官突然问她：公司缺少一名保洁员，问她要不要考虑。徐娇当时就崩溃了。</span></p>
+                    <p><br>
+                    </p>
+                    <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">后
+来从一档知名护肤节目上知道了贾琳，按老师教的日常祛皱护肤技巧，每天精心护理自己的肌肤。没多久肌肤就焕然一新，脸上细纹没了，粗糙平了，暗黄褪了，
+皮肤越来越饱满水嫩。又坚持了一段时间，脸上瑕疵统统不见了，除了嫩就是白。很快就被一家地产公司选中做销售顾问，月入过万。</span></p>
+                    <p style="line-height: 2em;"><br>
+                    </p>
+                    <p><img class="" data-backh="381" data-backw="558" data-copyright="0" data-ratio="0.6830985915492958" data-s="300,640" src="images/o1cn011hgna0r5jet6tm5_491020730.jpg" data-type="jpeg" data-w="568" style="width: 100%;height: auto;"></p>
+                    <p style="line-height: 2em;"><br>
+                    </p>
+                    <section class="_135editor" data-tools="135编辑器" data-id="52" data-color="#ee796b" data-custom="#ee796b" style="border-width: 0px;border-style: none;border-color: initial;box-sizing: border-box;">
+                        <section style="color: #ffffff;min-height: 1em;text-align: justify;background-image: -webkit-linear-gradient(left, #ea9389, #ffffff, #ea9389);background-color: #ee796b;">
+                            <section class="135brush" style="color: inherit;font-size: 14px;letter-spacing: 1.5px;line-height: 1.75em;padding: 1em 0.8em;box-sizing: border-box;">
+                                <p style="line-height: 2em;letter-spacing: 2px;"><span style="font-size: 15px;color: #000000;">想甩掉皱纹，想变美变年轻，减龄10-15岁！立即添加贾琳微信：<span style="color: #FF0000;"><strong><span style="font-family: 微软雅黑;" class="qz2"><script>document.write(stxlwx);</script>
+</span></strong>
+                                    </span>，专业祛皱护肤老师一对一为你服务，提供各种实用护肤小妙招！帮你铲除皱纹，轻松找回少女感！</span>
+                                </p>
+                            </section>
+                        </section>
+                    </section>
+                    <p style="line-height: 2em;"><br>
+                    </p>
+                    <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><strong><span style="font-family: 微软雅黑;font-size: 15px;">女人最好的状态，就是眼里写满故事，脸上却不见风霜。</span></strong><span style="font-family: 微软雅黑;font-size: 15px;">时间带给我们的，应该是数若珍宝的回忆，而不是一条条皱纹带来的绝望！</span></p>
+                    <p><br>
+                    </p>
+                    <p><img class="" data-backh="241" data-backw="512" data-ratio="0.470703125" src="images/o1cn011hgna1kmfwqjauq_491020730.gif" data-type="jpeg" data-w="512" style="width: 100%;height: auto;"></p>
+                    <p><br>
+                    </p>
+                    <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">如果你也想铲除皱纹，想要变美变年轻！现在就加贾琳老师微信：</span><span style="font-family: 微软雅黑;font-size: 15px;color: rgb(255, 0, 0);"><strong id="qz7"><script>document.write(stxlwx);</script>
+</strong></span><span style="font-family: 微软雅黑;font-size: 15px;">，专业祛皱护肤老师一对一为你服务，更有各种实用护肤小妙招。<strong>这一次，定能让你甩掉皱纹，轻松找回少女感！</strong></span></p>
+                    <p></p>
+                    <p class="" style="line-height: 28.7999992370605px;text-align: center;white-space: normal;max-width: 100%;min-height: 1em;font-size: 18px;color: rgb(251, 75, 149);font-weight: bold;min-width: 1em;box-sizing: border-box !important;word-wrap: break-word !important;word-break: break-all !important;background-color: rgb(255, 255, 255);">
+                        <span style="max-width: 100%;color: rgb(255, 79, 121);font-size: 20px;text-align: justify;text-indent: 32px;box-sizing: border-box !important;word-wrap: break-word !important;">
+<span style="font-size: 20px;line-height: 25.6000003814697px;">揭秘贾琳老师手中的祛皱嫩肤神器</span></span>
+                    </p>
+                    <p class="" style="line-height: 28.7999992370605px;text-align: center;white-space: normal;max-width: 100%;min-height: 1em;font-size: 18px;color: rgb(251, 75, 149);font-weight: bold;min-width: 1em;box-sizing: border-box !important;word-wrap: break-word !important;word-break: break-all !important;background-color: rgb(255, 255, 255);">
+                        <span style="max-width: 100%;color: rgb(0, 0, 0);font-size: 16px;text-align: justify;text-indent: 32px;line-height: 1.8;box-sizing: border-box !important;word-wrap: break-word !important;"><span style="line-height: 16px;text-align: center;">抹抹就出奇白嫩，并不稀奇</span></span>
+                    </p>
+                </section>
+                <p></p>
+                <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">据证实，这款让徐娇轻而易举逆龄20年的小液体，在中国叫“肽酸酶”原液，看似不起眼儿，实则是全球顶尖逆龄黑科技。
+</span></p>
+                <p style="text-indent: 2em;text-align: justify;">
+                    <br>
+                </p>
+                <p style="text-align: center;">
+                    <img style="width: 558px !important; height: auto !important; visibility: visible !important;" _width="558px" src="images/5.jpg">
+                </p>
+                <p style="text-indent: 2em;text-align: justify;">
+                    <br>
+                </p>
+                <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">
+自从使用神秘液体后，皮肤逐渐变白、消皱、嫩肤、祛色斑暗黄，天天抹，天天换脸，彻底打造“零瑕疵青春脸”。适合25岁——60岁，对肌肤要求极高的人使用。据说乔妹大婚前三个月，每天三次疯狂使用“肽酸酶”，最终换来一张弹指可破新娘脸！
+</span></p>
+                <p style="width:300px;margin:0 auto">
+                    <span class="jpg"><script>document.write(wx_img);</script></span>
+                </p>
+                <p style="color:red;text-align:center;font-weight:bold"> 添加识别二维码轻松除皱</p>
+                <p style="text-indent: 2em;text-align: justify;">
+                    <br>
+                </p>
+                <p class="" style="line-height: 28.7999992370605px;text-align: center;white-space: normal;max-width: 100%;min-height: 1em;font-size: 18px;color: rgb(251, 75, 149);font-weight: bold;min-width: 1em;box-sizing: border-box !important;word-wrap: break-word !important;word-break: break-all !important;background-color: rgb(255, 255, 255);">
+                    <span style="line-height: 25.6000003814697px;text-align: justify;font-size: 18px;max-width: 100%;color: rgb(255, 79, 121);text-indent: 32px;box-sizing: border-box !important;word-wrap: break-word !important;">专业人士称：</span>
+                </p>
+                <p class="" style="line-height: 28.7999992370605px;text-align: center;white-space: normal;max-width: 100%;min-height: 1em;font-size: 18px;color: rgb(251, 75, 149);font-weight: bold;min-width: 1em;box-sizing: border-box !important;word-wrap: break-word !important;word-break: break-all !important;background-color: rgb(255, 255, 255);">
+                    <span style="max-width: 100%;color: rgb(0, 0, 0);font-size: 16px;text-align: justify;text-indent: 32px;line-height: 1.8;box-sizing: border-box !important;word-wrap: break-word !important;"><span style="line-height: 16px;text-align: center;"><span style="line-height: 25.6000003814697px;">用这种液体，48岁也能年轻回28岁</span></span>
+                    </span>
+                </p>
+                <p style="text-indent: 2em;text-align: justify;">
+                    <span style="text-indent: 2em;line-height: 1.6;"><br>
+</span>
+                </p>
+                <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">
+<span style="text-indent: 2em;line-height: 1.6;">我国知名皮肤问题管理专家证实：</span>
+                    </span>
+                </p>
+                <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">
+<span style="text-indent: 2em;line-height: 1.6;">肽酸酶原液是一种把“富勒烯、寡肽、透明质酸”三
+大美容界顶尖成份兼容在一起的霸王级美容原液合剂，其中有二种系诺贝尔奖盖章成份，相当于把全球贵妇级大牌护肤品里最值钱的精华成份集中在了一个小瓶里。
+成年女性出现的皱纹、衰老、色斑、暗黄、粗糙、干燥等问题，抹上它，会变得出奇的平滑白嫩水润！</span>
+                    </span>
+                </p>
+                <p style="text-indent: 2em;text-align: justify;">
+                    <span style="text-indent: 2em;line-height: 1.6;"></span>
+                </p>
+                <img style="width: auto !important; height: auto !important;" src="images/6.jpg">
+                <p style="text-indent: 2em;text-align: justify;">
+                    <span style="line-height: 1.6;text-indent: 2em;"></span>
+                </p>
+                <p style="border-color: rgb(245, 245, 244);margin-left: 48px;margin-right: 48px;">
+                    <span style="line-height: 1.6;text-indent: 2em;"></span>
+                </p>
+                <p class="" style="line-height: 28.7999992370605px;text-align: center;white-space: normal;max-width: 100%;min-height: 1em;font-size: 18px;color: rgb(251, 75, 149);font-weight: bold;min-width: 1em;box-sizing: border-box !important;word-wrap: break-word !important;word-break: break-all !important;background-color: rgb(255, 255, 255);">
+                    <span style="line-height: 25.6000003814697px;text-align: justify;text-indent: 32px;max-width: 100%;color: rgb(255, 79, 121);box-sizing: border-box !important;word-wrap: break-word !important;">想逆龄10年，20年？</span>
+                </p>
+                <p class="" style="line-height: 28.7999992370605px;text-align: center;white-space: normal;max-width: 100%;min-height: 1em;font-size: 18px;color: rgb(251, 75, 149);font-weight: bold;min-width: 1em;box-sizing: border-box !important;word-wrap: break-word !important;word-break: break-all !important;background-color: rgb(255, 255, 255);">
+                    <span style="line-height: 1.8;text-align: justify;text-indent: 32px;max-width: 100%;color: rgb(0, 0, 0);box-sizing: border-box !important;word-wrap: break-word !important;">抹抹就实现！</span>
+                </p>
+                <p class="" style="line-height: 28.7999992370605px;text-align: center;white-space: normal;max-width: 100%;min-height: 1em;font-size: 18px;color: rgb(251, 75, 149);font-weight: bold;min-width: 1em;box-sizing: border-box !important;word-wrap: break-word !important;word-break: break-all !important;background-color: rgb(255, 255, 255);">
+                    <span style="line-height: 1.8;text-align: justify;text-indent: 32px;max-width: 100%;color: rgb(0, 0, 0);box-sizing: border-box !important;word-wrap: break-word !important;"><br>
+</span>
+                </p>
+                <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">
+<span style="line-height: 1.6;text-indent: 2em;">目前在我国，有360000例“肽酸酶”档案，几乎抹一个嫩一个，“逆生长”现象比比皆是。甚至有人担心，一旦“肽酸酶”得到普及，可能会出现“老少不分”的混乱现象，姥姥不像姥姥，妈妈不像妈妈。</span>
+                    </span>
+                </p>
+                <p style="text-indent: 2em;text-align: justify;">
+                </p>
+                <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">
+<span style="line-height: 1.6;text-indent: 2em;">去年长沙一位妈妈因长期给皮肤补充“肽酸酶原液”，半年当中，6次换脸，48岁看起来最多28岁，最终竟被儿子新女友误认为是小三，引发了一场让人啼笑皆非的误会。</span><br>
+                    </span>
+                </p>
+                <p style="text-indent: 2em;text-align: justify;">&nbsp;
+                </p>
+                <p style="text-align: center;">
+                    <img style="width: auto !important; height: auto !important;" src="images/7.jpg">
+                </p>
+                <p></p>
+                <p></p>
+                <section class="_135editor" data-tools="135编辑器" data-id="52" data-color="#ee796b" data-custom="#ee796b" style="border-width: 0px;border-style: none;border-color: initial;box-sizing: border-box;">
+                    <section style="color: #ffffff;min-height: 1em;text-align: justify;background-image: -webkit-linear-gradient(left, #ea9389, #ffffff, #ea9389);background-color: #ee796b;">
+                        <section class="135brush" style="color: inherit;font-size: 14px;letter-spacing: 1.5px;line-height: 1.75em;padding: 1em 0.8em;box-sizing: border-box;">
+                            <p style="line-height: 2em;letter-spacing: 2px;"><span style="font-size: 15px;color: #000000;">想甩掉皱纹，想变美变年轻，减龄10-15岁！立即添加贾琳微信：<span style="color: #FF0000;"><strong><span style="font-family: 微软雅黑;" id="qz6"><script>document.write(stxlwx);</script>
+</span></strong>
+                                </span>，专业祛皱护肤老师一对一为你服务，提供各种实用护肤小妙招！帮你铲除皱纹，轻松找回少女感！</span>
+                            </p>
+                        </section>
+                    </section>
+                </section>
+                <p style="width:300px;margin:0 auto">
+                    <span class="jpg"><script>document.write(wx_img);</script></span>
+                </p>
+                <p style="color:red;text-align:center;font-weight:bold"> 添加识别二维码轻松除皱</p>
+                <p></p>
+                <p></p>
+                <section class="" data-role="outer" label="Powered by 365editor" style="font-family:微软雅黑;font-size:16px;">
+                    <section style="margin-right: auto;margin-left: auto;text-align: center;">
+                        <section style="margin-right: auto;margin-left: auto;display: flex;justify-content: center;">
+                            <p style="height: 45px;color: rgb(245, 142, 193);border: 2px solid rgb(245, 142, 193);box-sizing: border-box;line-height: 41px;padding-right: 10px;padding-left: 10px;white-space: normal;">
+                                <span style="line-height: text-align: center;">皮肤好与坏</span>
+                            </p>
+                            <p style="height: 45px;color: rgb(255, 255, 255);box-sizing: border-box;line-height: 45px;padding-right: 10px;padding-left: 10px;white-space: normal;background-color: rgb(245, 142, 193);">
+                                <span style="line-height:text-align: center;">区别在这里</span>
+                            </p>
+                        </section>
+                    </section>
+                </section>
+                <p>
+                    <br>
+                </p>
+                <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">
+科学分析发现，女人在18岁以前，不抹护肤品脸蛋也水嫩弹滑，是因为皮肤内水分充足，胶原蛋白丰富。而25岁之后，皮肤不仅水分和胶原蛋白大量流失，还会因日晒、辐射、压力、污染等原因招来又一“破坏分子”——自由基，它破坏细胞、掐断皮下筛网、阻碍代谢，最终导致——
+</span></p>
+                <section class="" powered-by="xiumi.us" style="box-sizing: border-box;color: rgb(62, 62, 62);font-family: 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', 'Noto Sans', 'Noto Sans CJK SC', 'Microsoft YaHei', 'Apple Color Emoji', 'Segoe UI Symbol', Arial, sans-serif;font-size: 16px;line-height: 35.2000007629395px;white-space: normal;">
+                    <section style="box-sizing: border-box;">
+                        <section style="box-sizing: border-box;text-align: justify;line-height: 1.8;">
+                            <p style="box-sizing: border-box;text-indent: 2em;">
+                                <br style="box-sizing: border-box;">
+                            </p>
+                        </section>
+                    </section>
+                </section>
+                <section class="" powered-by="xiumi.us" style="box-sizing: border-box;color: rgb(62, 62, 62);font-family: 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', 'Noto Sans', 'Noto Sans CJK SC', 'Microsoft YaHei', 'Apple Color Emoji', 'Segoe UI Symbol', Arial, sans-serif;font-size: 16px;line-height: 35.2000007629395px;white-space: normal;">
+                    <section style="box-sizing: border-box;">
+                        <section style="box-sizing: border-box;display: inline-block;width: 536px;border-width: 0px 0px 0px 6px;border-style: solid;border-left-color: rgb(236, 106, 210);border-right-color: rgb(236, 106, 210);padding: 10px;">
+                            <section class="" powered-by="xiumi.us" style="box-sizing: border-box;">
+                                <section style="box-sizing: border-box;">
+                                    <section style="box-sizing: border-box;color: rgb(236, 106, 210);">
+                                        <p style="box-sizing: border-box;text-indent: 0em;">
+                                            <span style="box-sizing: border-box;font-weight: 700;">→<span style="line-height: 25.6000003814697px;text-align: justify;text-indent: 32px;">皮肤细胞干瘪出现干燥、松弛、皱纹；</span></span>
+                                        </p>
+                                        <p style="box-sizing: border-box;text-indent: 0em;">
+                                            <span style="box-sizing: border-box;font-weight: 700;">→<span style="line-height: 25.6000003814697px;text-align: justify;text-indent: 32px;">脂褐色素沉着出现色斑暗黄；</span></span>
+                                        </p>
+                                        <p style="box-sizing: border-box;text-indent: 0em;">
+                                            <span style="box-sizing: border-box;font-weight: 700;">→<span style="line-height: 25.6000003814697px;text-align: justify;text-indent: 32px;">毒素堆积出现粗糙、毛孔大……</span></span>
+                                        </p>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+                <section class="" powered-by="xiumi.us" style="box-sizing: border-box;color: rgb(62, 62, 62);font-family: 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', 'Noto Sans', 'Noto Sans CJK SC', 'Microsoft YaHei', 'Apple Color Emoji', 'Segoe UI Symbol', Arial, sans-serif;font-size: 16px;line-height: 35.2000007629395px;white-space: normal;">
+                    <section style="box-sizing: border-box;">
+                        <section>
+                            <p style="box-sizing: border-box;text-indent: 2em;">
+                                <br>
+                            </p>
+                            <p style="box-sizing: border-box;text-indent: 0em;text-align: center;">
+                                <img style="width: auto !important; height: auto !important;" src="images/10.jpg">
+                            </p>
+                            <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">
+<span style="line-height: 25.6000003814697px;text-align: justify;text-indent: 32px;">所以，清除自由基，锁牢水份，刺激胶原蛋白再生才是解决皮肤问题的根本。</span>
+                                </span>
+                            </p>
+                            <p style="box-sizing: border-box;text-indent: 2em;">
+                                <span style="line-height: 25.6000003814697px;text-align: justify;text-indent: 32px;"></span>
+                            </p>
+                            <p class="" style="line-height: 28.7999992370605px;text-align: center;white-space: normal;max-width: 100%;min-height: 1em;font-size: 18px;color: rgb(251, 75, 149);font-weight: bold;min-width: 1em;box-sizing: border-box !important;word-wrap: break-word !important;word-break: break-all !important;background-color: rgb(255, 255, 255);">
+                                <span style="max-width: 100%;color: rgb(255, 79, 121);font-size: 20px;text-align: justify;text-indent: 32px;box-sizing: border-box !important;word-wrap: break-word !important;"><span style="font-size: 16px;line-height: 25.6000003814697px;"><span style="line-height: 25.6000003814697px;text-align: center;"><span style="line-height: 25.6000003814697px;text-align: justify;">清除自由基</span></span>
+                                </span>
+                                </span>
+                            </p>
+                            <p class="" style="line-height: 28.7999992370605px;text-align: center;white-space: normal;max-width: 100%;min-height: 1em;font-size: 18px;color: rgb(251, 75, 149);font-weight: bold;min-width: 1em;box-sizing: border-box !important;word-wrap: break-word !important;word-break: break-all !important;background-color: rgb(255, 255, 255);">
+                                <span style="max-width: 100%;color: rgb(0, 0, 0);font-size: 16px;text-align: justify;text-indent: 32px;line-height: 1.8;box-sizing: border-box !important;word-wrap: break-word !important;"><span style="line-height: 16px;text-align: center;"><span style="line-height: 25.6000003814697px;"><span style="line-height: 25.6000003814697px;text-align: justify;">还皮肤满满的胶原蛋白和水分</span></span>
+                                </span>
+                                </span>
+                            </p>
+                        </section>
+                    </section>
+                </section>
+                <p style="line-height: 25.6000003814697px;white-space: normal;text-indent: 2em;text-align: justify;">
+                    <br>
+                </p>
+                <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">
+“肽酸酶”原液萃取成纳米级分子，8秒渗透肌底。它的核心成分，有着“自由基清道夫”之称的“富勒烯”，能像干燥的海绵吸水一样，把皮肤内蓄积的自由基快
+速吸附清除，抹一次，11小时阻击自由基入侵。持续清除可重建皮下筛网结构，扫清毒素垃圾，等于洗净皮下“淤泥”，使皮肤鲜活、通透、洁净，轻松逆龄。正
+因为这一伟大作用，发现富勒烯的三位美英科学家于1996年荣获诺贝尔奖。
+</span></p>
+                <p style="text-indent: 2em;text-align: justify;">
+                    <br>
+                </p>
+                <p style="text-indent: 0em;text-align: center;">
+                    <img style="width: auto !important; height: auto !important;" src="images/11.jpg">
+                </p>
+                <p style="text-indent: 2em;text-align: justify;">
+                    <br>
+                </p>
+                <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">
+另外“肽酸酶原液”内含的“锁水神器”透明质酸，一个分子能携带500个水分子，2%的透明质酸水溶液能“抓牢”98%的水分，有了它，等于在皮肤肌底建
+了蓄水池，从表皮到肌底，层层补满水。同时素有“皮肤干细胞，拉皮整形不用刀”之称的寡肽成份，能刺激胶原蛋白和弹性蛋白再生。
+</span></p>
+                <p style="text-indent: 2em;text-align: justify;">
+                    最近在端粒酶催化反应中发现了关键的一步，揭示了端粒酶的作用。端粒酶负责延长端粒，这是唯一可以延迟甚至逆转细胞衰老过程的关键。
+                </p>
+                <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">
+正因为这四大黄金成份的联合作用，才使得皮肤抹上就迅速变嫩，变水，变弹。
+</span></p>
+                <p style="text-indent: 2em;text-align: justify;">
+                    <br>
+                </p>
+                <p>
+                    <img style="width: auto !important; height: auto !important;" src="images/12.jpg">
+                </p>
+                <p style="text-indent: 2em;text-align: justify;">&nbsp;
+                </p>
+                <p style="text-indent: 0em;text-align: justify;">
+                    <strong><span style="color: rgb(255, 79, 121);">香港生物总署发现——</span></strong>
+                </p>
+                <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">
+持续使用“肽酸酶”6个月以上，可使皮肤免遭自由基侵蚀，恢复到18岁以前的状态，平均水分值在45%，胶原蛋白含量85%以上，皱纹、松弛、色斑、粗糙、暗黄、干燥自然消失。
+</span></p>
+                <p style="text-indent: 2em;text-align: justify;">
+                    <br>
+                </p>
+                <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">
+有业内人士预测，“肽酸酶”的出现，有望让所有成年女性年轻5－10岁，甚至个别女性可逆龄15－25岁。即便一个人天天做面膜，连做10年，也远远达不到这个效果。
+</span></p>
+                <p style="text-indent: 2em;text-align: justify;">&nbsp;
+                </p>
+                <p style="text-align: center;">
+                    <img style="width: 80% !important; height: auto !important;" src="images/13.jpg">
+                </p>
+                <p style="text-indent: 2em;text-align: justify;">
+                    <br>
+                </p>
+                <section class="_135editor" data-tools="135编辑器" data-id="52" data-color="#ee796b" data-custom="#ee796b" style="border-width: 0px;border-style: none;border-color: initial;box-sizing: border-box;">
+                    <section style="color: #ffffff;min-height: 1em;text-align: justify;background-image: -webkit-linear-gradient(left, #ea9389, #ffffff, #ea9389);background-color: #ee796b;">
+                        <section class="135brush" style="color: inherit;font-size: 14px;letter-spacing: 1.5px;line-height: 1.75em;padding: 1em 0.8em;box-sizing: border-box;">
+                            <p style="line-height: 2em;letter-spacing: 2px;"><span style="font-size: 15px;color: #000000;">想甩掉皱纹，想变美变年轻，减龄10-15岁！立即添加贾琳微信：<span style="color: #FF0000;"><strong><span style="font-family: 微软雅黑;" class="qz2"><script>document.write(stxlwx);</script>
+</span></strong>
+                                </span>，专业祛皱护肤老师一对一为你服务，提供各种实用护肤小妙招！帮你铲除皱纹，轻松找回少女感！</span>
+                            </p>
+                        </section>
+                    </section>
+                </section>
+                <p></p>
+                <p></p>
+                <p style="width:300px;margin:0 auto">
+                    <span class="jpg"><script>document.write(wx_img);</script></span>
+                </p>
+                <p style="color:red;text-align:center;font-weight:bold"> 添加识别二维码轻松除皱</p>
+                <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">
+根据国内化妆品成分检测权威网站“美丽修行网”公布的结果显示：肽酸酶原液”未加任何添加剂，化学防腐剂、荧光剂、增稠剂、激素、色素、香精……全无。
+安全指数5颗星，比目前世界最昂贵的护肤品H牌还多一颗星，安全到可以喝，婴儿、孕妇都能用，目前全球尚无替代品。
+</span></p>
+                <p style="text-indent: 2em;text-align: justify;">
+                    <br>
+                </p>
+                <p>
+                    <img style="width: auto !important; height: auto !important;" src="images/14.jpg">
+                </p>
+                <p></p>
+                <section class="" data-color="rgb(251,75,149)" style="margin-top: 20px;font-size: 16px;white-space: normal;max-width: 100%;color: rgb(62, 62, 62);line-height: 28.7999992370605px;text-align: justify;border: 0px none;box-sizing: border-box !important;word-wrap: break-word !important;background-color: rgb(255, 255, 255);">
+                    <section style="max-width: 100%;border: 0px none;box-sizing: border-box !important;word-wrap: break-word !important;">
+                        <section style="max-width: 100%;width: 670px;display: flex;justify-content: center;align-items: center;box-sizing: border-box !important;word-wrap: break-word !important;">
+                            <section style="max-width: 100%;width: 167.5px;text-align: right;box-sizing: border-box !important;word-wrap: break-word !important;">
+                                <section style="margin-top: 5px;max-width: 100%;opacity: 0.8;border-bottom-width: 10px;border-bottom-style: solid;border-bottom-color: rgb(251, 75, 149);border-top-color: rgb(251, 75, 149);color: inherit;display: inline-block;box-sizing: border-box !important;word-wrap: break-word !important;border-left-width: 6px !important;border-left-style: solid !important;border-left-color: transparent !important;border-right-width: 6px !important;border-right-style: solid !important;border-right-color: transparent !important;"></section>
+                                <section style="margin-top: 5px;margin-right: 5px;margin-left: 10px;max-width: 100%;opacity: 0.4;border-left-width: 0px;border-left-style: solid;border-left-color: rgb(251, 75, 149);border-right-width: 10px;border-right-style: solid;border-right-color: rgb(251, 75, 149);color: inherit;transform: rotate(10deg);display: inline-block;box-sizing: border-box !important;word-wrap: break-word !important;border-top-width: 6px !important;border-top-style: solid !important;border-top-color: transparent !important;border-bottom-width: 6px !important;border-bottom-style: solid !important;border-bottom-color: transparent !important;"></section>
+                                <section style="max-width: 100%;border-left-width: 20px;border-left-style: solid;border-left-color: rgb(251, 75, 149);border-right-width: 0px;border-right-style: solid;border-right-color: rgb(251, 75, 149);color: inherit;transform: rotate(10deg);display: inline-block;vertical-align: middle;box-sizing: border-box !important;word-wrap: break-word !important;border-top-width: 15px !important;border-top-style: solid !important;border-top-color: transparent !important;border-bottom-width: 10px !important;border-bottom-style: solid !important;border-bottom-color: transparent !important;"></section>
+                            </section>
+                            <section style="padding-right: 5px;padding-left: 5px;max-width: 100%;width: 335px;text-align: center;display: inline-block;box-sizing: border-box !important;word-wrap: break-word !important;">
+                                <section style="max-width: 100%;display: inline-block;box-sizing: border-box !important;word-wrap: break-word !important;">
+                                    <p class="" style="max-width: 100%;min-height: 1em;font-size: 18px;color: rgb(251, 75, 149);font-weight: bold;min-width: 1em;box-sizing: border-box !important;word-wrap: break-word !important;word-break: break-all !important;">
+                                        <span style="max-width: 100%;color: rgb(255, 79, 121);font-size: 20px;text-align: justify;text-indent: 32px;box-sizing: border-box !important;word-wrap: break-word !important;"><span style="font-size: 16px;line-height: 25.6000003814697px;"><span style="line-height: 25.6000003814697px;text-align: center;"><span style="line-height: 25.6000003814697px;text-align: justify;text-indent: 32px;">焕肤极品</span></span>
+                                        </span>
+                                        </span>
+                                    </p>
+                                    <p class="" style="max-width: 100%;min-height: 1em;font-size: 18px;color: rgb(251, 75, 149);font-weight: bold;min-width: 1em;box-sizing: border-box !important;word-wrap: break-word !important;word-break: break-all !important;">
+                                        <span style="max-width: 100%;color: rgb(255, 79, 121);font-size: 20px;text-align: justify;text-indent: 32px;box-sizing: border-box !important;word-wrap: break-word !important;"><span style="font-size: 16px;line-height: 25.6000003814697px;"><span style="line-height: 25.6000003814697px;text-align: center;"><span style="line-height: 25.6000003814697px;text-align: justify;text-indent: 32px;">祛皱嫩肤，白皙红润</span></span>
+                                        </span>
+                                        </span>
+                                    </p>
+                                </section>
+                            </section>
+                            <section style="max-width: 100%;width: 167.5px;box-sizing: border-box !important;word-wrap: break-word !important;">
+                                <section style="max-width: 100%;display: inline-block;box-sizing: border-box !important;word-wrap: break-word !important;">
+                                    <section style="margin-top: 5px;max-width: 100%;opacity: 0.8;border-bottom-width: 10px;border-bottom-style: solid;border-bottom-color: rgb(251, 75, 149);border-top-color: rgb(251, 75, 149);color: inherit;display: inline-block;box-sizing: border-box !important;word-wrap: break-word !important;border-left-width: 6px !important;border-left-style: solid !important;border-left-color: transparent !important;border-right-width: 6px !important;border-right-style: solid !important;border-right-color: transparent !important;"></section>
+                                    <section style="margin-top: 5px;margin-right: 5px;margin-left: 10px;max-width: 100%;opacity: 0.4;border-right-width: 10px;border-right-style: solid;border-right-color: rgb(251, 75, 149);border-left-width: 0px;border-left-style: solid;border-left-color: rgb(251, 75, 149);color: inherit;transform: rotate(10deg);display: inline-block;box-sizing: border-box !important;word-wrap: break-word !important;border-top-width: 6px !important;border-top-style: solid !important;border-top-color: transparent !important;border-bottom-width: 6px !important;border-bottom-style: solid !important;border-bottom-color: transparent !important;"></section>
+                                    <section style="max-width: 100%;border-left-width: 20px;border-left-style: solid;border-left-color: rgb(251, 75, 149);border-right-width: 0px;border-right-style: solid;border-right-color: rgb(251, 75, 149);color: inherit;transform: rotate(10deg);display: inline-block;vertical-align: middle;box-sizing: border-box !important;word-wrap: break-word !important;border-top-width: 15px !important;border-top-style: solid !important;border-top-color: transparent !important;border-bottom-width: 10px !important;border-bottom-style: solid !important;border-bottom-color: transparent !important;"></section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+                <p style="text-indent: 2em;text-align: justify;">
+                    <br>
+                </p>
+                <p <p="" style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">
+<span style="text-indent: 2em;line-height: 1.6;">根据60000女性朋友使用“肽酸酶”的皮肤变化，总结规律如下：</span><br>
+                    </span>
+                </p>
+                <section data-role="outer" label="Powered by 135editor.com" style="max-width: 100%;color: rgb(62, 62, 62);font-size: 16px;line-height: 25.6000003814697px;white-space: normal;box-sizing: border-box !important;word-wrap: break-word !important;background-color: rgb(255, 255, 255);">
+                    <section class="" data-tools="135编辑器" data-id="88968" data-color="rgb(216, 40, 33)" style="max-width: 100%;box-sizing: border-box;border: 0px none;word-wrap: break-word !important;">
+                        <section class="" style="margin: 10px auto;max-width: 100%;box-sizing: border-box !important;word-wrap: break-word !important;">
+                            <section class="" style="max-width: 100%;box-sizing: border-box;border-style: solid;-webkit-border-image: url(img/22.png) 135 200 fill;border-width: 20px 30px;word-wrap: break-word !important;">
+                                <section class="" data-tools="135编辑器" data-id="86261" style="max-width: 100%;box-sizing: border-box;border: 0px none;word-wrap: break-word !important;">
+                                    <section style="max-width: 100%;box-sizing: border-box;width: 10px;height: 10px;border-radius: 50%;display: inline-block;color: rgb(254, 254, 254);word-wrap: break-word !important;background-color: rgb(227, 106, 108);"></section><span style="line-height: 28.7999992370605px;text-align: justify;text-indent: 32px;max-width: 100%;font-size: 16px;color: rgb(255, 79, 121);box-sizing: border-box !important;word-wrap: break-word !important;">前7天水嫩弹滑。</span>
+                                </section>
+                                <p style="max-width: 100%;box-sizing: border-box;border: 0px none;text-indent: 2em;text-align: justify;word-wrap: break-word !important;">
+                                </p>
+                                <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">锁水功能提升50倍，肌肤水分值在40%左右，皮肤塌陷的筛网结构开始弹起，半夜醒来皮肤依然水当当；</span>
+                                </p>
+                                <p style="max-width: 100%;box-sizing: border-box;border: 0px none;text-indent: 2em;text-align: justify;word-wrap: break-word !important;">
+                                    <span style="line-height: 28.7999992370605px;text-align: justify;text-indent: 32px;max-width: 100%;font-size: 16px;color: rgb(89, 89, 89);box-sizing: border-box !important;word-wrap: break-word !important;"><br>
+</span>
+                                </p>
+                                <section class="" data-tools="135编辑器" data-id="86261" style="max-width: 100%;box-sizing: border-box;border: 0px none;word-wrap: break-word !important;">
+                                    <section style="max-width: 100%;box-sizing: border-box;width: 10px;height: 10px;border-radius: 50%;display: inline-block;color: rgb(254, 254, 254);word-wrap: break-word !important;background-color: rgb(227, 106, 108);"></section><span style="line-height: 28.7999992370605px;text-align: justify;text-indent: 32px;max-width: 100%;font-size: 16px;color: rgb(255, 79, 121);box-sizing: border-box !important;word-wrap: break-word !important;">28天细白通透。</span>
+                                </section>
+                                <p style="max-width: 100%;box-sizing: border-box;border: 0px none;text-indent: 2em;text-align: justify;word-wrap: break-word !important;">
+                                </p>
+                                <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">皮肤代谢周期完毕，毒素铅毒排出，褪黑褪黄，黑色素下降70%；</span>
+                                </p>
+                                <p style="max-width: 100%;box-sizing: border-box;border: 0px none;text-indent: 2em;text-align: justify;word-wrap: break-word !important;">
+                                    <span style="line-height: 28.7999992370605px;text-align: justify;text-indent: 32px;max-width: 100%;font-size: 16px;color: rgb(89, 89, 89);box-sizing: border-box !important;word-wrap: break-word !important;"><br>
+</span>
+                                </p>
+                                <section class="" data-tools="135编辑器" data-id="86261" style="max-width: 100%;box-sizing: border-box;border: 0px none;word-wrap: break-word !important;">
+                                    <section style="max-width: 100%;box-sizing: border-box;width: 10px;height: 10px;border-radius: 50%;display: inline-block;color: rgb(254, 254, 254);word-wrap: break-word !important;background-color: rgb(227, 106, 108);"></section><span style="line-height: 25.6000003814697px;text-align: justify;text-indent: 32px;font-size: 16px;color: rgb(255, 79, 121);">3个月细嫩亮白。</span><span style="font-size: 16px;"><span style="line-height: 25.6000003814697px;text-align: justify;text-indent: 32px;"></span>
+                                    <span style="max-width: 100%;line-height: 28.7999992370605px;text-align: justify;text-indent: 32px;color: rgb(89, 89, 89);box-sizing: border-box !important;word-wrap: break-word !important;"></span>
+                                    </span>
+                                </section>
+                                <p style="max-width: 100%;box-sizing: border-box;border: 0px none;text-indent: 2em;text-align: justify;word-wrap: break-word !important;">
+                                </p>
+                                <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">消纹淡斑、抚平粗糙，褪暗沉缩毛孔，皮肤水分值50%以上，胶原蛋白含量达90%，肤质年轻水嫩无瑕疵，年轻10－25岁！</span>
+                                </p>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+                <p style="max-width: 100%;min-height: 1em;color: rgb(62, 62, 62);font-size: 16px;line-height: 25.6000003814697px;white-space: normal;text-indent: 2em;text-align: justify;box-sizing: border-box !important;word-wrap: break-word !important;background-color: rgb(255, 255, 255);">
+                    <br>
+                </p>
+                <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">
+如今肽酸酶原液已经帮助国内外2000万女性找回白嫩无瑕肌肤，更被众多女性统称为“青春定格圣物”。
+</span></p>
+                <p style="text-indent: 2em;text-align: justify;">
+                    <br>
+                </p>
+                <p style="text-indent: 0em;text-align: center;">
+                    <img style="width: 80% !important; height: auto !important;" src="images/19.jpg">
+                </p>
+                <p style="text-indent: 2em;text-align: justify;">&nbsp;
+                </p>
+                <p style="text-align: justify;line-height: 2em;letter-spacing: 2px;"><span style="font-family: 微软雅黑;font-size: 15px;">
+目前“肽酸酶”原液已多次被《Vogue》、《ELLE》推荐，多家国际尖端美容会所为防止肽酸酶冲击市场，企图高价垄断，均被肽酸酶团队拒绝，肽酸酶团队的运营宗旨就是：贵妇产品，平民享用，把变美的权利还给每一个爱自己的女人。
+</span></p>
+                <p style="text-indent: 2em;text-align: justify;">&nbsp;
+                </p>
+                <p style="text-indent: 0em;text-align: center;">
+                    <img style="width: 80% !important; height: auto !important;" src="images/20.jpg">
+                </p>
+                <p></p>
+                <p></p>
+                <section style="color: #ffffff;min-height: 1em;text-align: justify;background-image: -webkit-linear-gradient(left, #ea9389, #ffffff, #ea9389);background-color: #ee796b;">
+                    <section class="135brush" style="color: inherit;font-size: 14px;letter-spacing: 1.5px;line-height: 1.75em;padding: 1em 0.8em;box-sizing: border-box;">
+                        <p style="line-height: 2em;letter-spacing: 2px;"><span style="font-size: 15px;color: #000000;">想甩掉皱纹，想变美变年轻，减龄10-15岁！立即添加贾琳微信：<span style="color: #FF0000;"><strong><span style="font-family: 微软雅黑;" class="qz2"><script>document.write(stxlwx);</script>
+</span></strong>
+                            </span>，专业祛皱护肤老师一对一为你服务，提供各种实用护肤小妙招！帮你铲除皱纹，轻松找回少女感！</span>
+                        </p>
+                    </section>
+                </section>
+                <p style="width:300px;margin:0 auto">
+                    <span class="jpg"><script>document.write(wx_img);</script></span>
+                </p>
+                <p style="color:red;text-align:center;font-weight:bold"> 添加识别二维码轻松除皱</p>
+
+                <style>
+                    </p></p></p>.read_class {
+                        color: #CCC;
+                        margin: 20px;
+                    }
+                    
+                    .box3 {
+                        position: relative;
+                    }
+                    
+                    .xian3 {
+                        height: 1px;
+                        width: 40%;
+                        margin-top: 10px;
+                        background-color: #000;
+                        position: absolute;
+                        top: 3px;
+                    }
+                    
+                    .xian3-1 {
+                        right: 0;
+                    }
+                    
+                    .box3 h6 {
+                        text-align: center;
+                        margin: 0;
+                        padding: 0;
+                        padding-bottom: 20px;
+                    }
+                </style>
+                </p>
+                <div class="read_class">阅读&nbsp;&nbsp;<span>100000</span>+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/hand.jpg" style="width:25px; height:25px">&nbsp;<span>8586</span></div>
+                <div class="input_wrap">
+                    <div class="box3">
+                        <div class="xian3">&nbsp;</div>
+                        <h6>精彩评论</h6>
+                        <div class="xian3 xian3-1">&nbsp;</div>
+                    </div>
+                    <div class="cmnt_article">
+                        <div class="cmnt_list" id="j_newslist">
+                            <div class="cmnt_item">
+                                <p class="cmnt_top">
+                                    <span>
+<img src="images/o1cn011hgna1glnnnyd7p_491020730.jpg" alt="海棠朵朵">
+<i class="cmnt_nick">海棠朵朵</i>
+</span>
+                                </p>
+                                <p class="cmnt_text">全靠贾琳老师的帮忙！我终于去掉脸上的皱纹了，咨询还是免费的，太给力了。</p>
+                                <div class="cmnt_op_bottom clearfix">
+                                    <p class="cmnt_op_bottom_times">10天前</p>
+                                    <a class="cmnt_op_bottom_report j_report" href="javascript:;">举报</a>
+                                    <span class="cmnt_op">
+<a class="cmnt_op_bottom_report j_report" href="javascript:;">点赞</a><a data-sudaclick="comment2_4" href="javascript:void(0);" title="赞" class="good j_favor_single">135</a>
+<a href="javascript:void(0);" title="评论" class="cmntico j_cmnt_single" data-sudaclick="comment1_4"></a> </span>
+                                </div>
+                            </div>
+                            <div class="cmnt_item">
+                                <p class="cmnt_top">
+                                    <span>
+<img src="images/o1cn011hgna1ev8lqvzyg_491020730.jpg" alt="粉红色的回忆">
+<i class="cmnt_nick">粉红色的回忆</i>
+</span>
+                                </p>
+                                <p class="cmnt_text">全靠贾琳老师<span style="background:#FFFF00; color:#FF0000; font-weight:bolder;">微信：<span class="qz2"><script>document.write(stxlwx);</script>
+</span></span>教我怎么正确祛皱，我目前已经看不到了，被皱纹问题煎熬了几年时间，，</p>
+                                <p>现在才发现原来皱纹这么简易，老师是美丽与智慧的化身，如果她不说，自己根本学习不到！</p>
+                                <div class="cmnt_op_bottom clearfix">
+                                    <p class="cmnt_op_bottom_times">5天前</p>
+                                    <a class="cmnt_op_bottom_report j_report" href="javascript:;">举报</a>
+                                    <span class="cmnt_op">
+<a class="cmnt_op_bottom_report j_report" href="javascript:;">点赞</a><a data-sudaclick="comment2_4" href="javascript:void(0);" title="赞" class="good j_favor_single">851</a>
+<a href="javascript:void(0);" title="评论" class="cmntico j_cmnt_single" data-sudaclick="comment1_4"></a> </span>
+                                </div>
+                            </div>
+                            <div class="cmnt_item">
+                                <p class="cmnt_top">
+                                    <span>
+<img src="images/o1cn011hgna1ev05ip0f1_491020730.png" alt="与云共舞">
+<i class="cmnt_nick">与云共舞</i>
+</span>
+                                </p>
+                                <p class="cmnt_text">贾琳老师人真好，昨天帮我彻底的分析了我的皱纹原因，给我提了好多意见， 现</p>
+                                <p>现在用老师的方法坚持，皱纹已经开始变淡了，太好了！</p>
+                                <div class="cmnt_op_bottom clearfix">
+                                    <p class="cmnt_op_bottom_times">10天前</p>
+                                    <a class="cmnt_op_bottom_report j_report" href="javascript:;">举报</a>
+                                    <span class="cmnt_op">
+<a class="cmnt_op_bottom_report j_report" href="javascript:;">点赞</a><a data-sudaclick="comment2_4" href="javascript:void(0);" title="赞" class="good j_favor_single">152</a>
+<a href="javascript:void(0);" title="评论" class="cmntico j_cmnt_single" data-sudaclick="comment1_4"></a> </span>
+                                </div>
+                            </div>
+                            <div class="cmnt_item">
+                                <p class="cmnt_top">
+                                    <span>
+<img src="images/o1cn011hgna2l4tdws7vl_491020730.png" alt="你笑起来很美">
+<i class="cmnt_nick">你笑起来很美</i>
+</span>
+                                </p>
+                                <p class="cmnt_text">这么多年的皱纹谜题终于解开了，终于不用受到皱纹问题困扰了。</p>
+                                <div class="cmnt_op_bottom clearfix">
+                                    <p class="cmnt_op_bottom_times">10天前</p>
+                                    <a class="cmnt_op_bottom_report j_report" href="javascript:;">举报</a>
+                                    <span class="cmnt_op">
+<a class="cmnt_op_bottom_report j_report" href="javascript:;">点赞</a><a data-sudaclick="comment2_4" href="javascript:void(0);" title="赞" class="good j_favor_single">109</a>
+<a href="javascript:void(0);" title="评论" class="cmntico j_cmnt_single" data-sudaclick="comment1_4"></a> </span>
+                                </div>
+                            </div>
+                            <div class="cmnt_item">
+                                <p class="cmnt_top">
+                                    <span>
+<img src="images/touxiang4.png" alt="淡淡的游泳鱼">
+<i class="cmnt_nick">淡淡的游泳鱼</i>
+</span>
+                                </p>
+                                <p class="cmnt_text">我生完宝宝后皱纹就越来越重，而且一直变多，就是贾琳老师<span style="background:#FFFF00; color:#FF0000; font-weight:bolder;">微信：<span class="qz2"><script>document.write(stxlwx);</script>
+</span></span>帮我祛掉的，好开心</p>
+                                <div class="cmnt_op_bottom clearfix">
+                                    <p class="cmnt_op_bottom_times">10天前</p>
+                                    <a class="cmnt_op_bottom_report j_report" href="javascript:;">举报</a>
+                                    <span class="cmnt_op">
+<a class="cmnt_op_bottom_report j_report" href="javascript:;">点赞</a><a data-sudaclick="comment2_4" href="javascript:void(0);" title="赞" class="good j_favor_single">265</a>
+<a href="javascript:void(0);" title="评论" class="cmntico j_cmnt_single" data-sudaclick="comment1_4"></a> </span>
+                                </div>
+                            </div>
+                            <div class="cmnt_item">
+                                <p class="cmnt_top">
+                                    <span>
+<img src="images/touxiang5.png" alt="枫叶一秋">
+<i class="cmnt_nick">枫叶一秋</i>
+</span>
+                                </p>
+                                <p class="cmnt_text">刚开始用老师的方法，本人是多年的皱纹，使用了一段时间明显淡了很多，继续中...</p>
+                                <div class="cmnt_op_bottom clearfix">
+                                    <p class="cmnt_op_bottom_times">10天前</p>
+                                    <a class="cmnt_op_bottom_report j_report" href="javascript:;">举报</a>
+                                    <span class="cmnt_op">
+<a class="cmnt_op_bottom_report j_report" href="javascript:;">点赞</a><a data-sudaclick="comment2_4" href="javascript:void(0);" title="赞" class="good j_favor_single">89</a>
+<a href="javascript:void(0);" title="评论" class="cmntico j_cmnt_single" data-sudaclick="comment1_4"></a> </span>
+                                </div>
+                            </div>
+                            <div class="cmnt_item">
+                                <p class="cmnt_top">
+                                    <span>
+<img src="images/o1cn011hgna2ucukduwz1_491020730.jpg" alt="MMMP">
+<i class="cmnt_nick">MMMP</i>
+</span>
+                                </p>
+                                <p class="cmnt_text">我是一名大学男教师，脸上的也不知道属于什么纹，年轻时候就开始有了，最近越来越重，请问老师那有男同胞祛皱的么？</p>
+                                <div class="cmnt_op_bottom clearfix">
+                                    <p class="cmnt_op_bottom_times">5天前</p>
+                                    <a class="cmnt_op_bottom_report j_report" href="javascript:;">举报</a>
+                                    <span class="cmnt_op">
+<a class="cmnt_op_bottom_report j_report" href="javascript:;">点赞</a><a data-sudaclick="comment2_4" href="javascript:void(0);" title="赞" class="good j_favor_single">845</a>
+<a href="javascript:void(0);" title="评论" class="cmntico j_cmnt_single" data-sudaclick="comment1_4"></a> </span>
+                                </div>
+                            </div>
+                            <div class="cmnt_item">
+                                <p class="cmnt_top">
+                                    <span>
+<img src="images/o1cn011hgna1azqgttptg_491020730.jpg" alt="华水雪">
+<i class="cmnt_nick">华水雪</i> 
+</span>
+                                </p>
+                                <p class="cmnt_text">当然有了，你加老师微信看下朋友圈，各种情况的案例，祛皱知识分析也很详细，男人形象也很重要的！</p>
+                                <div class="cmnt_op_bottom clearfix">
+                                    <p class="cmnt_op_bottom_times">5天前</p>
+                                    <a class="cmnt_op_bottom_report j_report" href="javascript:;">举报</a>
+                                    <span class="cmnt_op">
+<a class="cmnt_op_bottom_report j_report" href="javascript:;">点赞</a><a data-sudaclick="comment2_4" href="javascript:void(0);" title="赞" class="good j_favor_single">163</a>
+<a href="javascript:void(0);" title="评论" class="cmntico j_cmnt_single" data-sudaclick="comment1_4"></a> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cmnt_item">
+                            <p class="cmnt_top">
+                                <span>
+<img src="images/o1cn011hgna1evt8f08hd_491020730.png" alt="小紫羽">
+<i class="cmnt_nick">小紫羽</i>
+</span>
+                            </p>
+                            <p>我妹妹，脸蛋不错，就是有皱纹。后来我坚持让她跟着祛皱，最终我判断没错。皱纹抚平后变成大美女，其它人都说没了皱纹的她比我漂亮，脸部皮肤太重要了，弄的我现在有点嫉妒了！</p>
+                            <p class="cmnt_text">&nbsp;</p>
+                            <div class="cmnt_op_bottom clearfix"><a class="cmnt_op_bottom_report j_report" href="javascript:;">举报</a> <span class="cmnt_op"> <a class="cmnt_op_bottom_report j_report" href="javascript:;">点赞</a><a data-sudaclick="comment2_4" href="javascript:void(0);" title="赞" class="good j_favor_single">301</a> <a href="javascript:void(0);" title="评论" class="cmntico j_cmnt_single" data-sudaclick="comment1_4"></a> </span>                                </div>
+                        </div>
+                        <div class="cmnt_item">
+                            <p class="cmnt_top">
+                                <span>
+<img src="images/o1cn011hgna1azuqrxrxy_491020730.png" alt="Yanqing1020">
+<i class="cmnt_nick">Yanqing1020</i>
+</span>
+                            </p>
+                            <p>重要找到希望了，555555555，已经关注了老师微信，教了我方法了，希望我也可以快点祛皱</p>
+                            <p class="cmnt_text">&nbsp;</p>
+                            <div class="cmnt_op_bottom clearfix">
+                                <p class="cmnt_op_bottom_times">10天前</p>
+                                <a class="cmnt_op_bottom_report j_report" href="javascript:;">举报</a>
+                                <span class="cmnt_op">
+<a class="cmnt_op_bottom_report j_report" href="javascript:;">点赞</a><a data-sudaclick="comment2_4" href="javascript:void(0);" title="赞" class="good j_favor_single">201</a>
+<a href="javascript:void(0);" title="评论" class="cmntico j_cmnt_single" data-sudaclick="comment1_4"></a> </span>
+                            </div>
+                        </div>
+                        <div class="cmnt_item">
+                            <p class="cmnt_top">
+                                <span>
+<img src="images/o1cn011hgna1twgesia11_491020730.png" alt="平菇test">
+<i class="cmnt_nick">平菇test</i>
+</span>
+                            </p>
+                            <p class="cmnt_text">这个社会就这样这样。因为老婆不好看，出去搞三搞四的人不计其数。女人也好，男人也好，还是要为自己负责，该行动起来就行动起来，拥有好脸蛋就是一个大资本！</p>
+                            <div class="cmnt_op_bottom clearfix">
+                                <p class="cmnt_op_bottom_times">10天前</p>
+                                <a class="cmnt_op_bottom_report j_report" href="javascript:;">举报</a>
+                                <span class="cmnt_op">
+<a class="cmnt_op_bottom_report j_report" href="javascript:;">点赞</a><a data-sudaclick="comment2_4" href="javascript:void(0);" title="赞" class="good j_favor_single">119</a>
+<a href="javascript:void(0);" title="评论" class="cmntico j_cmnt_single" data-sudaclick="comment1_4"></a> </span>
+                            </div>
+                        </div>
+                        <div class="cmnt_item">
+                            <p class="cmnt_top">
+                                <span>
+<img src="images/o1cn011hgna1apzzynizj_491020730.png" alt="似水风情">
+<i class="cmnt_nick">似水风情</i>
+</span>
+                            </p>
+                            <p class="cmnt_text">我是一名空姐，今年已经25了，最近生活不规律皱纹加重了好多。已经加老师微信了，老师帮我分析了一下，我觉得很有道理。有专业的人帮就是不一样啊！我打算今天开始实践了！</p>
+                            <div class="cmnt_op_bottom clearfix">
+                                <p class="cmnt_op_bottom_times">10天前</p>
+                                <a class="cmnt_op_bottom_report j_report" href="javascript:;">举报</a>
+                                <span class="cmnt_op">
+<a class="cmnt_op_bottom_report j_report" href="javascript:;">点赞</a><a data-sudaclick="comment2_4" href="javascript:void(0);" title="赞" class="good j_favor_single">119</a>
+<a href="javascript:void(0);" title="评论" class="cmntico j_cmnt_single" data-sudaclick="comment1_4"></a> </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p></p>
+                <p></p>
+                <p class="" style="line-height: 28.7999992370605px;text-align: center;white-space: normal;max-width: 100%;min-height: 1em;font-size: 18px;color: rgb(251, 75, 149);255);">
+                    <span style="max-width: 100%;color: rgb(0, 0, 0);font-size: 16px;text-align: justify;text-indent: 32px;line-height: 1.8;box-sizing: border-box !important;word-wrap: break-word !important;">
+<span style="line-height: 16px;text-align: center;"><span style="line-height: 25.6000003814697px;"><span style="line-height: 25.6000003814697px;text-align: justify;"></span></span>
+                    </span>
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <p style="text-align:center;"><br>
+    </p>
+    </div>
+    </div>
+    <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-header" style="padding: 0px; margin: 0px;">
+                <img src="images/o1cn011hgnzzkwg9xhgjr_491020730.png" alt="" style="width: 100%;">
+                <p id="mydel">X</p>
+            </div>
+            <div class="modal-content" style="border-top-right-radius: 0; border-top-left-radius: 0;">
+                <div class="modal-body">
+                    <h4 style="margin: auto;line-height: 150%; margin-bottom:0.3em;font-size:1.5em; color:#FF0000;">免费获得VIP咨询名额</h4>
+                    <h4 style="margin: auto;line-height: 150%; margin-bottom:0.3em;font-size:1.3em;">仅剩<span style="color:#FF0000; padding:5px;">6</span>个名额</h4>
+                    <span style="font-size:1.2em;">↓长按复制添加微信↓</span>
+                    <center><span style="display:block; background:#E5004F;border-radius:5px;font-size:1.3em; color:#FFFFFF; padding:3px; margin-top:0.8em; margin-bottom:0.5em;box-shadow:5px 5px 5px #888888; width:50%;" class="qz2"><script>document.write(stxlwx);</script> </span></center>
+                    <span style="size:0.5em;">咨询获取一对一<span style="color:#FF0000;">去皱方案</span></span>
+                    <span style="size:0.5em; display:block;"><span style="color:#FF0000;">50个</span>幸运名额，机会难得</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style type="text/css">
+        #mydel {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            right: -16px;
+            top: 82px;
+            background: rgba(0, 0, 0, .85);
+            color: #fff;
+            border-radius: 50px;
+            font-family: Arial;
+            font-size: 20px;
+            font-weight: 100;
+            text-align: center;
+        }
+    </style>
+</body>
+
+</html>

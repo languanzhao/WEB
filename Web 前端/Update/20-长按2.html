@@ -36,10 +36,12 @@
             //长按400毫秒   
             // e.preventDefault();    
         },  
+		//如果手指有移动，则取消所有事件，此时说明用户只是要移动而不是长按
         touchmove: function() {  
             clearTimeout(timeOutEvent);  
             timeOutEvent = 0;  
         },  
+		//真正长按后应该执行的内容
         touchend: function() {  
             clearTimeout(timeOutEvent);  
             if (timeOutEvent != 0) {  

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1.长按并提示复制功能且自动调到微信</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <!-- 已在js中加载css -->
+    <script src="js/layer.js"></script>
+    <script>
+        var arr = ["aaaaaa", "bbbbbb", "cccccc"]
+        var index = Math.floor(Math.random() * arr.length)
+        var wxNumber = arr[index]
+    </script>
+</head>
+
+<body>
+    <div class="jpg" oncopy="toCopy()">
+        <script>
+            document.write(wxNumber)
+        </script>
+    </div>
+    <div class="jpg" oncopy="toCopy()">
+        <script>
+            document.write(wxNumber)
+        </script>
+    </div>
+</body>
+<script>
+    function toCopy() {
+        openConfirm()
+    }
+
+    function openConfirm() {
+        layer.open({
+            content: '<div style="color:#0B54B4;font-weight:bold;font-size:1.6em;line-height: 1.2em;">您已复制成功，<br/>马上添加护肤顾问的微信！</div><br/><div id="wechatImg" ></div>',
+            shadeClose: false,
+            btn: ['取消', '加微信'],
+            yes: function(index) {
+                layer.close(index);
+                alert("a")
+            },
+            no: function(index) {
+                window.location.href = "weixin://";
+                alert("b")
+            },
+            success: function(elem) {
+                document.getElementById('wechatImg').innerHTML = '<img src="images/wechatAdd.gif" id="wechatImg" style="width:100%;">';
+            }
+        });
+    }
+</script>
+
+</html>

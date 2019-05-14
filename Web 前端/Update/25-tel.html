@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <a href="tel:18520617104" class="tel_1"></a>
+    <script>
+        var arr_wx1 = ["18520617104", "15913552130"]; //修改的手机号
+        var wx_index1 = Math.floor((Math.random() * arr_wx1.length));
+        var stxlwx1 = arr_wx1[wx_index1];
+        var stxlwx1_tel = 'tel:' + stxlwx1
+
+
+        $('.tel_1').attr('href', stxlwx1_tel);
+        $(".tel_1").text(stxlwx1);
+    </script>
+</body>
+
+</html>

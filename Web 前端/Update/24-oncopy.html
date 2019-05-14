@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>移动端UC和百度不支持oncopy事件;oncopy事件就是拷贝后执行的事件</title>
+</head>
+
+<body>
+    <div oncopy="myFunction()" id="demo">GGASD9833</div>
+    <div>那个是浏览器行为。除非你用JS强制改变,英文数字可以长按选中全部，但中文不行</div>
+    <div oncopy="toCopy()">GGASD9833</div>
+</body>
+<script>
+    function myFunction() {
+        document.getElementById("demo").innerHTML = "你拷贝了文本!"
+    }
+
+    function toCopy() {
+        alert("复制成功")
+    }
+</script>
+
+</html>

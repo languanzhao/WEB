@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>弹窗样式</title>
+    <script>
+        var arr = ["aaaaaa", "bbbbbb", "cccccc"]
+        var index = Math.floor(Math.random() * arr.length)
+        var wxNumber = arr[index]
+    </script>
+</head>
+
+<body>
+    <div id="text-wx" onclick="jsCopy()">
+        <script>
+            document.write(wxNumber)
+        </script>
+    </div>
+    <div onclick="jsCopy()">
+        <script>
+            document.write(wxNumber)
+        </script>
+    </div>
+    <div id="animationTipBox" style="position: fixed;top: 0;left: 0;right: 0;bottom: 0;z-index: 10000;width: 100%;height: 100%;font-size: 1rem;display: none;">
+        <div class="success" id="xs" style="width: 80%;height: 11rem;background: #f3f3f5;color: #fff;padding: 5px 0;border-radius: 10px;text-align: center;position: relative;top: 50%;left: 50%;transform: translate(-50%, -50%);">
+            <div class="icon" style="position: relative;width: 60px;border-radius: 50px;margin: 4px auto;margin-top: 15px;">
+                <img src="images/1.png" style="width: 100%;">
+            </div>
+            <div class="dec_txt" style="font-size: 16px;text-align: center;color: #1f0202;line-height: 26px;height: 26px;padding: 5px 0 10px 0;border-top: 1px solid #fff;">
+                <p class="dec_txt_p" style="font-size: 14px;line-height: 20px;margin-bottom: 0.7rem;text-align: center;">您已成功复制微信号
+                    <span class="wx_hm"><script>document.write(wxNumber)</script></span>，是否立即跳转到微信搜索该微信号？</p>
+                <div class="kuang" style="width: 13rem;margin: 0 auto;overflow: hidden;">
+                    <div class="qx hidePopbox" onclick='close1()' style="width: 5.5rem;border: 1px solid #999999;border-radius: 10px;font-size: 14px;float: left;color: #999999;">取消</div>
+                    <div class="qd" style="width: 5.5rem;border: 1px solid #00D48C;border-radius: 10px;font-size: 14px;float: left;color: #00D48C;margin-left: 1rem;">
+                        <a href="weixin://" style="color: #00D48C;">确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    function jsCopy() {
+        var range = document.createRange();
+        range.selectNode(document.getElementById('text-wx'));
+        var selection = window.getSelection();
+        if (selection.rangeCount > 0) {
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+        document.execCommand('copy');
+        document.getElementById('animationTipBox').style.display = 'block';
+    }
+
+    function MyCopyFunction() {
+        document.getElementById('animationTipBox').style.display = 'block';
+    }
+</script>
+<script type="text/javascript">
+    function close1() {
+
+        document.getElementById('animationTipBox').style.display = 'none';
+    }
+</script>
+
+</html>

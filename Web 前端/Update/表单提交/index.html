@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单提交</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="from">
+
+        <form action="" class="form_box" id='submitFrom2'>
+
+            <input type="text" name="name" placeholder="请输入您的姓名" class="from_name" id="name">
+
+            <input type="text" name="phone" placeholder="请输入您的手机号码" class="from_name" id="phone">
+
+        </form>
+
+        <div class="submit_btn" onclick="handleClickSubmit('submitFrom2')">立即提交</div>
+
+
+
+    </div>
+</body>
+<script>
+    var name = $("#name").val()
+    var phone = $("#phone").val()
+
+    function handleClickSubmit(from) {
+        //判断用户是否输入姓名
+        if (document.getElementById(from).name.value == '') {
+
+            document.getElementById(from).name.focus();
+
+            alert("请输入收货人姓名");
+
+            return false;
+
+        }
+        //判断用户是否正确输入手机号
+        var reg = /^1[3|4|5|7|8][0-9]\d{4,8}$/
+        if (!(reg.test(document.getElementById(from).phone.value)) ||
+
+            document.getElementById(from).phone.value.length != 11) {
+
+            document.getElementById(from).phone.focus();
+
+            alert("您的电话输入有误，请重新填写！");
+
+            return false;
+
+        }
+        //提交到后台
+        $.post('https://tongji.yougou520.cn/api/Blog/add_order', {
+
+            // name: document.getElementById(from).name.value,
+            // phone: document.getElementById(from).phone.value,
+            name: name,
+            phone: phone,
+            adtype: 80
+
+        }, function(res) {
+
+            // _czc.push(["_trackEvent",'按钮', '提交成功']);
+
+            alert('提交成功')
+            console.log(res)
+
+        })
+    }
+</script>
+
+</html>

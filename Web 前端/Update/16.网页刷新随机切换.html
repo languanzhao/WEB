@@ -7,17 +7,71 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>网页刷新随机切换</title>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        var arr = ['追求卓越', '夏季上新', '蓝天']
+        var index = Math.floor(Math.random() * arr.length)
+            //微信号
+        var wxNumber = arr[index]
+            //微信号对应二维码图片
+        var wx_img = "<img style='width:100%;height:300px;' src='img/" + wxNumber + ".jpg'/>"
+    </script>
 </head>
 
+
 <body>
-    <img src="" alt="" class="change" style="width:300px;height:200px;margin:0 auto;">
-    <img src="" alt="" class="change" style="width:300px;height:200px;margin:0 auto;">
+
+    <div style="text-align:center;">
+        <script>
+            document.write(wxNumber)
+        </script>
+    </div>
+    <div>
+        <script>
+            document.write(wx_img)
+        </script>
+    </div>
+    <div>
+        <a href="tel:15913552130" class="tel"></a>
+    </div>
 </body>
 <script>
-    var qrcode = ['banner01.jpg', 'banner02.jpg', 'banner03.jpg']
-    var index = Math.floor(Math.random() * qrcode.length)
- 
-    $(".change").attr("src",'img/' + qrcode[index])
+    //1.判断 2.tel格式 3.文本内容
+
+    // if (wxNumber === "追求卓越") {
+    //     var phone = 15913552130
+    //     var tel = 'tel:' + phone
+    //     $(".tel").attr('href', tel)
+    //     $('.tel').text(phone)
+    // } else if (wxNumber === "夏季上新") {
+    //     var phone = 15913552131
+    //     var tel = 'tel:' + phone
+    //     $(".tel").attr('href', tel)
+    //     $('.tel').text(phone)
+    // } else if (wxNumber === "蓝天") {
+    //     var phone = 15913552132
+    //     var tel = 'tel:' + phone
+    //     $(".tel").attr('href', tel)
+    //     $('.tel').text(phone)
+    // }
+    function telFunction(params) {
+        var tel = 'tel:' + phone
+        $(".tel").attr('href', tel)
+        $('.tel').text(phone)
+    }
+    switch (wxNumber) {
+        case "追求卓越":
+            var phone = 15913552130
+            telFunction()
+            break;
+        case "夏季上新":
+            var phone = 15913552131
+            telFunction()
+            break;
+        case "蓝天":
+            var phone = 15913552132
+            telFunction()
+            break;
+    }
 </script>
 
 </html>
