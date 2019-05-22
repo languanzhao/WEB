@@ -75,22 +75,27 @@
 		var val = [
 			{
 				id:0,
-				text:'标题一'
+				text:'标题一',
+				content:'这个是p标签'
 			},
 			{
 				id:1,
-				text:'标题二'
+				text:'标题二',
+				content:'这个是p标签'
 			},
 			{
 				id:2,
-				text:'标题三'
+				text:'标题三',
+				content:'这个是p标签'
 			}
 		]
 		$('.forEach').html(getHtml(val))
 			function getHtml(val){
 				var html = ''
 				for(var i = 0;i < val.length;i++){
-					html += '<li style="color:red;">这是第' + val[i].id + val[i].text + '个循环出来的标签' + '</li>'
+					html += '<li style="color:red;">'+
+					'<p>'+ val[i].content + '</p>'
+					+ '这是第' + val[i].id + val[i].text + '个循环出来的标签' + '</li>'
 				}
 				return html 
 			}

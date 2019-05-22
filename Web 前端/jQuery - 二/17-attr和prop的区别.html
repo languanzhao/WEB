@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jquery中attr和prop的区别</title>
+	</head>
+	<body>
+		<div>文档：https://www.cnblogs.com/Showshare/p/different-between-attr-and-prop.html</div>
+		<p>对于HTML元素本身就带有的固有属性，在处理时，使用prop方法。</p>
+		<p>对于HTML元素我们自己自定义的DOM属性，在处理时，使用attr方法。</p>
+		<p>像checkbox，radio和select这样的元素，选中属性对应“checked”和“selected”，这些也属于固有属性，因此需要使用prop方法去操作才能获得正确的结果。</p>
+		<p>这个例子里<a>元素的DOM属性有“href、id和action”，很明显，前两个是固有属性，而后面一个“action”属性是我们自己自定义上去的，<a>元素本身是没有这个属性的。这种就是自定义的DOM属性。处理这些属性时，建议使用attr方法。使用prop方法取值和设置属性值时，都会返回undefined值。</p>
+	</body>
+</html>

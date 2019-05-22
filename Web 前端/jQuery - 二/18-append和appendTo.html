@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>append和appendTo</title>
+		<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="box"></div>
+		<div style="margin: 100px 0;"></div>
+		<div class="appendTo">这也是被插入的内容</div>
+	</body>
+	<script>
+		$(".box").append('<div class="content" style="color: red;font-size: 30px;"><p>这是被插入的内容</p><p>这是被插入的内容</p></div>')
+		$(".appendTo").appendTo('.box')
+	</script>
+</html>

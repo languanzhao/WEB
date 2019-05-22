@@ -27,6 +27,7 @@
     </div>
 </body>
 <script>
+		// return false，事件处理函数会取消事件，不再继续向下执行。比如表单将终止提交。
     var name = $("#name").val()
     var phone = $("#phone").val()
 
@@ -55,22 +56,30 @@
 
         }
         //提交到后台
-        $.post('https://tongji.yougou520.cn/api/Blog/add_order', {
-
-            // name: document.getElementById(from).name.value,
-            // phone: document.getElementById(from).phone.value,
-            name: name,
-            phone: phone,
-            adtype: 80
-
-        }, function(res) {
-
-            // _czc.push(["_trackEvent",'按钮', '提交成功']);
-
-            alert('提交成功')
-            console.log(res)
-
-        })
+//         $.post('https://tongji.yougou520.cn/api/Blog/add_order', {
+//             // name: document.getElementById(from).name.value,
+//             // phone: document.getElementById(from).phone.value,
+//             name: name,
+//             phone: phone,
+//             adtype: 80
+//         }, function(res) {
+//             // _czc.push(["_trackEvent",'按钮', '提交成功']);
+//             alert('提交成功')
+//             console.log(res)
+//         })
+		$.ajax({
+			url:'https://tongji.yougou520.cn/api/Blog/add_order',
+			type:'POST',
+			data:{
+				name:name,
+				phone:phone,
+				adtype:80
+			},
+			success:function(res){
+				console.log(res)
+				alert("提交成功")
+			}
+		})
     }
 </script>
 

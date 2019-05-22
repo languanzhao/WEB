@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>多行文本省略</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script type="text/javascript" language="javascript" src="js/jquery.dotdotdot.js"></script>
+		<style>
+			.way1{
+				width: 200px;
+				height: 40px;
+				overflow:hidden; 
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient:vertical;
+			}
+			.way2{
+				width: 200px;
+				height: 60px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="way1">
+			网页设计中常遇到文本过多而溢出所在容器的情况网页设计中常遇到文本过多而溢出所在容器的情况
+		</div>
+		<br />
+		<br />
+		<div class="way2">
+			网页设计中常遇到文本过多而溢出所在容器的情况网页设计中常遇到文本过多而溢出所在容器的情况
+			<a href="###" class="readmore">更多 &raquo;</a>
+		</div>
+	</body>
+	<script>
+		$('.way2').dotdotdot({
+			after: 'a.readmore'
+		})
+		$('.readmore').click(function(){
+			$(".way2").css({'height':'200px','color':'red'})
+			
+		})
+		
+	</script>
+</html>
